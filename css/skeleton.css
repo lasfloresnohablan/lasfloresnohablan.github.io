@@ -955,11 +955,12 @@ input[type=gender] {
   background-size: auto;
   background-size: auto;
   background-size: 20px;
-  width: 29px;
   font-size: 21px;
   text-indent: 6px;
   text-transform: uppercase;
-  height: 29px;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
   color:#81b5853b;
   text-shadow: none;
 }
@@ -973,6 +974,15 @@ input[type=gender] {
   text-shadow: none;
   color:#a2c4b4a3;
 }
+
+
+.gender-rightbox{
+  position: absolute;
+    top: 162px;
+    left: 90px;
+}
+
+
 @keyframes records-data {
   from {
   opacity:0;
