@@ -145,10 +145,15 @@ body {
   font-family: sans-serif;
   color: #000;
   letter-spacing: 3px;
-  background: rgb(68,93,86);
+ 
+  /*background: rgb(68,93,86);*/
   text-shadow: -1px -1px 4px #14d1f0;
+
   
-  background: radial-gradient(circle, rgba(68,93,86,1) 0%, rgba(42,51,48,1) 1%, rgba(30,45,52,1) 5%, rgba(1,1,1,1) 26%, rgba(1,1,1,1) 47%, rgba(1,1,1,1) 68%, rgba(30,45,52,1) 94%, rgba(42,51,48,1) 99%, rgba(68,93,86,1) 100%);
+  /*background: radial-gradient(circle, rgba(68,93,86,1) 0%, rgba(42,51,48,1) 1%, rgba(30,45,52,1) 5%, rgba(1,1,1,1) 26%, rgba(1,1,1,1) 47%, rgba(1,1,1,1) 68%, rgba(30,45,52,1) 94%, rgba(42,51,48,1) 99%, rgba(68,93,86,1) 100%);
+*/
+
+
 }
 @font-face {
   font-family: 'VCR OSD Mono';
