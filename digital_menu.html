@@ -19,34 +19,37 @@
       <link rel="stylesheet" href="dm_css/skeleton.css">
       <!------------------------>
       <style>
-         ul {
-         list-style-type: none;
-         margin: 0;
-         padding: 0;
-         overflow: hidden;
-         background-color: #333;
-         }
-         li {
-         float: left;
-         }
-         li a {
-         display: block;
-         color: white;
-         text-align: center;
-         padding: 14px 16px;
-         text-decoration: none;
-         }
-         li a:hover:not(.active) {
-         background-color: #111;
-         }
-         .active {
-         background-color: #04AA6D;
-         }
-         .menu{
-         position: fixed;
-         z-index: 99999999999999999999999999999999999;
-         width: 100%;
-  margin-top: -100px;
+         /* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+} 
                   }
       </style>
       <!-- Favicon
@@ -58,13 +61,19 @@
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
          
-      <ul class="menu">
+     <!-- <ul class="menu">
          <img src="dm_images/header.jpg" alt="Girl in a jacket" width="100%">
          <li><a class="active" href="#home">Breakfast</a></li>
          <li><a href="#contact">Lunch</a></li>
          <li><a href="#about">Dinner</a></li>
-      </ul>
+      </ul>-->
       <div class="container">
+          <ul class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Pictures</a></li>
+  <li><a href="#">Summer 15</a></li>
+  <li>Italy</li>
+</ul> 
    
          <div class="row">
             <table  style="margin-top: 20%;">
