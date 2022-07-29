@@ -52,7 +52,9 @@ ul.breadcrumb li a:hover {
 } 
                   }
          
-header_fixed {position: fixed;}
+header_fixed {
+   position: fixed!important;
+         }
          
       </style>
       <!-- Favicon
@@ -70,7 +72,8 @@ header_fixed {position: fixed;}
          <li><a href="#contact">Lunch</a></li>
          <li><a href="#about">Dinner</a></li>
       </ul>-->
-        <img class="header_fixed" src="dm_images/header.jpg" alt="Girl in a jacket" width="100%">
+        <img class="header_fixed" src="dm_images/header.jpg" alt="Girl in a jacket" width="100%" style="position: fixed;
+z-index: 999999999999;">
       <div class="container">
           <ul class="breadcrumb">
   <li><a href="#">Home</a></li>
