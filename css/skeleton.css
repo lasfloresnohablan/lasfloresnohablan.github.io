@@ -225,7 +225,7 @@ body {
     color: #222;
     background: #f8f998;
     /* background: linear-gradient(0deg, rgb(250 227 147) 19%, rgba(250, 228, 142, 1) 40%, rgba(223, 223, 223, 1) 68%);*/
-    height: 100vh;
+    /*height: 100vh;*/
     text-transform: lowercase;
 }
 
