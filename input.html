@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Input Form</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 </head>
 <body>
 
@@ -33,51 +35,64 @@
 </div>
 
 <script>
-function saveData() {
-    let number1 = document.getElementById("number1").value || 0;
-    let number2 = document.getElementById("number2").value || 0;
-    let number3 = document.getElementById("number3").value || 0;
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyCjQ0bA4lVhBmPrpU41uqnWfwjmLMihzYk",
+        authDomain: "kmxsalud-database.firebaseapp.com",
+        projectId: "kmxsalud-database",
+        storageBucket: "kmxsalud-database.appspot.com",
+        messagingSenderId: "216946537560",
+        appId: "1:216946537560:web:02019702598e3571bc062d"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-    // Store the numbers in localStorage
-    localStorage.setItem("number1", number1);
-    localStorage.setItem("number2", number2);
-    localStorage.setItem("number3", number3);
+    function saveData() {
+        let number1 = document.getElementById("number1").value || 0;
+        let number2 = document.getElementById("number2").value || 0;
+        let number3 = document.getElementById("number3").value || 0;
 
-    // Display a status message confirming that the data has been saved
-    document.getElementById("status").innerText = "Numbers saved. You can now open 'display.html' to see the sum.";
-}
+        // Save data to Firestore
+        db.collection("numbers").doc("kmx").set({
+            number1: parseFloat(number1),
+            number2: parseFloat(number2),
+            number3: parseFloat(number3)
+        }).then(() => {
+            document.getElementById("status").innerText = "Numbers saved. All users will now see updated data.";
+        }).catch((error) => {
+            console.error("Error saving document: ", error);
+        });
+    }
 
-function showResetWarning() {
-    // Show the warning message and buttons
-    document.getElementById("resetWarning").style.display = "block";
-}
+    function showResetWarning() {
+        document.getElementById("resetWarning").style.display = "block";
+    }
 
-function confirmReset() {
-    // Proceed with reset if the user confirms
-    resetData();
-    // Hide the warning message
-    document.getElementById("resetWarning").style.display = "none";
-}
+    function confirmReset() {
+        resetData();
+        document.getElementById("resetWarning").style.display = "none";
+    }
 
-function cancelReset() {
-    // Hide the warning message if the user cancels
-    document.getElementById("resetWarning").style.display = "none";
-}
+    function cancelReset() {
+        document.getElementById("resetWarning").style.display = "none";
+    }
 
-function resetData() {
-    // Reset the input fields
-    document.getElementById("number1").value = 0;
-    document.getElementById("number2").value = 0;
-    document.getElementById("number3").value = 0;
+    function resetData() {
+        document.getElementById("number1").value = 0;
+        document.getElementById("number2").value = 0;
+        document.getElementById("number3").value = 0;
 
-    // Clear the numbers from localStorage
-    localStorage.setItem("number1", 0);
-    localStorage.setItem("number2", 0);
-    localStorage.setItem("number3", 0);
-
-    // Update the status message
-    document.getElementById("status").innerText = "Numbers have been reset to zero.";
-}
+        // Reset data in Firestore
+        db.collection("numbers").doc("kmx").set({
+            number1: 0,
+            number2: 0,
+            number3: 0
+        }).then(() => {
+            document.getElementById("status").innerText = "Numbers have been reset to zero.";
+        }).catch((error) => {
+            console.error("Error resetting document: ", error);
+        });
+    }
 </script>
 
 </body>
