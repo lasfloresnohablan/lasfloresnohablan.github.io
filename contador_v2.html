@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilometros por la Salud - Input & Display</title>
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/contador.css">
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+   <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+</head>
+
+<body>
+
+    <h2>Numeral Input Form</h2>
+
+    <!-- Input Form Section -->
+    <form>
+        <label for="number1">Number 1:</label>
+        <input type="number" id="number1" name="number1"><br><br>
+
+        <label for="number2">Number 2:</label>
+        <input type="number" id="number2" name="number2"><br><br>
+
+        <label for="number3">Number 3:</label>
+        <input type="number" id="number3" name="number3"><br><br>
+
+        <button type="button" onclick="saveData()">Submit</button>
+        <button type="button" onclick="showResetWarning()">Reset</button>
+    </form>
+
+    <p id="status"></p>
+
+    <!-- Warning message section -->
+    <div id="resetWarning" style="display:none; border:1px solid red; padding:10px; margin-top:20px;">
+        <p>Are you sure you want to reset all the numbers to zero? This action cannot be undone.</p>
+        <button type="button" onclick="confirmReset()">Yes, Reset</button>
+        <button type="button" onclick="cancelReset()">Cancel</button>
+    </div>
+
+    <!-- Display Section -->
+    <div class="row" style="background-color: #222222;">
+        <div class="three columns">
+            <p class="dashboard-items_kmx">[ Viernes <b>25</b> ]</p>
+            <div class="border_1_kmx">
+                <p id="displayNumber1" class="big_numbers">0</p>
+            </div>
+        </div>
+        <div class="three columns">
+            <p class="dashboard-items_kmx">[ Sábado <b>26</b> ]</p>
+            <div class="border_1_kmx">
+                <p id="displayNumber2" class="big_numbers">0</p>
+            </div>
+        </div>
+        <div class="three columns">
+            <p class="dashboard-items_kmx">[ Domingo <b>27</b> ]</p>
+            <div class="border_1_kmx">
+                <p id="displayNumber3" class="big_numbers">0</p>
+            </div>
+        </div>
+        <div class="three columns">
+            <p class="dashboard-items_kmx">[ Total ]</p>
+            <p id="displaySum" class="big_numbers" style="font-weight: bold;">0</p>
+            <p class="flipclock_b">Kilómetros</p>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle input, storage, and display -->
+    <script>
+        function saveData() {
+            let number1 = document.getElementById("number1").value || 0;
+            let number2 = document.getElementById("number2").value || 0;
+            let number3 = document.getElementById("number3").value || 0;
+
+            // Store the numbers in localStorage
+            localStorage.setItem("number1", number1);
+            localStorage.setItem("number2", number2);
+            localStorage.setItem("number3", number3);
+
+            // Display a status message confirming that the data has been saved
+            document.getElementById("status").innerText = "Numbers saved. See the display below.";
+            displayNumbers();
+        }
+
+        function showResetWarning() {
+            document.getElementById("resetWarning").style.display = "block";
+        }
+
+        function confirmReset() {
+            resetData();
+            document.getElementById("resetWarning").style.display = "none";
+        }
+
+        function cancelReset() {
+            document.getElementById("resetWarning").style.display = "none";
+        }
+
+        function resetData() {
+            document.getElementById("number1").value = 0;
+            document.getElementById("number2").value = 0;
+            document.getElementById("number3").value = 0;
+
+            // Clear the numbers from localStorage
+            localStorage.setItem("number1", 0);
+            localStorage.setItem("number2", 0);
+            localStorage.setItem("number3", 0);
+
+            document.getElementById("status").innerText = "Numbers have been reset to zero.";
+            displayNumbers();
+        }
+
+        // Function to display numbers and their sum
+        function displayNumbers() {
+            let number1 = parseFloat(localStorage.getItem("number1")) || 0;
+            let number2 = parseFloat(localStorage.getItem("number2")) || 0;
+            let number3 = parseFloat(localStorage.getItem("number3")) || 0;
+
+            document.getElementById("displayNumber1").innerText = number1;
+            document.getElementById("displayNumber2").innerText = number2;
+            document.getElementById("displayNumber3").innerText = number3;
+
+            let sum = number1 + number2 + number3;
+            document.getElementById("displaySum").innerText = sum;
+        }
+
+        window.addEventListener('storage', function(event) {
+            if (event.key === "number1" || event.key === "number2" || event.key === "number3") {
+                displayNumbers();
+            }
+        });
+
+        window.onload = function() {
+            displayNumbers();
+        };
+    </script>
+
+
+    <script>
+    // Firebase configuration (replace with your Firebase config info)
+    const firebaseConfig = {
+        apiKey: "AIzaSyCjQ0bA4lVhBmPrpU41uqnWfwjmLMihzYk",
+        authDomain: "kmxsalud-database.firebaseapp.com",
+        projectId: "kmxsalud-database",
+        storageBucket: "kmxsalud-database.appspot.com",
+        messagingSenderId: "216946537560",
+        appId: "1:216946537560:web:02019702598e3571bc062d"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+</script>
+
+
+
+
+</body>
+
+</html>
