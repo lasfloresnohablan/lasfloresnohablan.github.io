@@ -39,27 +39,28 @@
     </table>
 
     <script>
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyeSxqFw9JPNNW7nFX0CbGyyQ9DevZ1AGWezYyW2n3TV-cUqdb74jWKei2ekWDWhB-EQjr1sEyzpp_/pub?output=csv';  // Replace with your actual CSV link
+        // Your published CSV link
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyeSxqFw9JPNNW7nFX0CbGyyQ9DevZ1AGWezYyW2n3TV-cUqdb74jWKei2ekWDWhB-EQjr1sEyzpp_/pub?output=csv'; 
 
         const fetchData = async () => {
-            const response = await fetch(sheetUrl);
+            const response = await fetch(sheetUrl + '?cachebuster=' + new Date().getTime()); // Add cache-busting query
             const data = await response.text();
             const rows = data.split('\n').slice(1);  // Skip the header row
 
-            let total1 = 0, total2 = 0, total3 = 0;  // Variables to store the sums
+            let total1 = 0, total2 = 0, total3 = 0;
 
             rows.forEach(row => {
                 const cells = row.split(',');
                 
                 // Add to totals (skipping the timestamp in the first column)
                 if (cells.length >= 4) {
-                    total1 += parseFloat(cells[1]) || 0;  // Sum of "Number 1" inputs
-                    total2 += parseFloat(cells[2]) || 0;  // Sum of "Number 2" inputs
-                    total3 += parseFloat(cells[3]) || 0;  // Sum of "Number 3" inputs
+                    total1 += parseFloat(cells[1]) || 0;
+                    total2 += parseFloat(cells[2]) || 0;
+                    total3 += parseFloat(cells[3]) || 0;
                 }
             });
 
-            const grandTotal = total1 + total2 + total3;  // Grand total (sum of all numbers)
+            const grandTotal = total1 + total2 + total3;
 
             // Display the sums in the table
             document.getElementById('sum1').textContent = total1;
@@ -68,7 +69,9 @@
             document.getElementById('grandTotal').textContent = grandTotal;
         };
 
-        fetchData();
+        // Fetch data every 10 seconds (you can adjust the interval)
+        setInterval(fetchData, 10000);  // 10,000 ms = 10 seconds
+        fetchData();  // Fetch initially
     </script>
 </body>
 </html>
