@@ -33,6 +33,8 @@
 
     <script>
         const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyeSxqFw9JPNNW7nFX0CbGyyQ9DevZ1AGWezYyW2n3TV-cUqdb74jWKei2ekWDWhB-EQjr1sEyzpp_/pub?output=csv';
+  // Replace with your actual CSV link
+
         const fetchData = async () => {
             const response = await fetch(sheetUrl);
             const data = await response.text();
@@ -41,9 +43,13 @@
             const tableBody = document.getElementById('data');
             rows.forEach(row => {
                 const cells = row.split(',');
+                
+                // Skip the timestamp column (which is the first column, so we start at index 1)
                 if (cells.length >= 4) {
                     const newRow = document.createElement('tr');
-                    for (let i = 0; i < 4; i++) {
+                    
+                    // Process columns starting from the second column (skip the first timestamp column)
+                    for (let i = 1; i < 5; i++) {  // Starting from index 1 (Number 1) and going to index 4 (Sum)
                         const cell = document.createElement('td');
                         cell.textContent = cells[i];
                         newRow.appendChild(cell);
