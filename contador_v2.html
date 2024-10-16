@@ -40,33 +40,44 @@
 
     <script>
         // Your published CSV link
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyeSxqFw9JPNNW7nFX0CbGyyQ9DevZ1AGWezYyW2n3TV-cUqdb74jWKei2ekWDWhB-EQjr1sEyzpp_/pub?output=csv'; 
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyeSxqFw9JPNNW7nFX0CbGyyQ9DevZ1AGWezYyW2n3TV-cUqdb74jWKei2ekWDWhB-EQjr1sEyzpp_/pub?output=csv';
 
         const fetchData = async () => {
-            const response = await fetch(sheetUrl + '?cachebuster=' + new Date().getTime()); // Add cache-busting query
-            const data = await response.text();
-            const rows = data.split('\n').slice(1);  // Skip the header row
-
-            let total1 = 0, total2 = 0, total3 = 0;
-
-            rows.forEach(row => {
-                const cells = row.split(',');
+            try {
+                const response = await fetch(sheetUrl + '?cachebuster=' + new Date().getTime());
                 
-                // Add to totals (skipping the timestamp in the first column)
-                if (cells.length >= 4) {
-                    total1 += parseFloat(cells[1]) || 0;
-                    total2 += parseFloat(cells[2]) || 0;
-                    total3 += parseFloat(cells[3]) || 0;
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-            });
 
-            const grandTotal = total1 + total2 + total3;
+                const data = await response.text();
+                const rows = data.split('\n').slice(1);  // Skip the header row
 
-            // Display the sums in the table
-            document.getElementById('sum1').textContent = total1;
-            document.getElementById('sum2').textContent = total2;
-            document.getElementById('sum3').textContent = total3;
-            document.getElementById('grandTotal').textContent = grandTotal;
+                let total1 = 0, total2 = 0, total3 = 0;
+
+                rows.forEach(row => {
+                    const cells = row.split(',');
+                    
+                    // Add to totals (skipping the timestamp in the first column)
+                    if (cells.length >= 4) {
+                        total1 += parseFloat(cells[1]) || 0;
+                        total2 += parseFloat(cells[2]) || 0;
+                        total3 += parseFloat(cells[3]) || 0;
+                    }
+                });
+
+                const grandTotal = total1 + total2 + total3;
+
+                // Display the sums in the table
+                document.getElementById('sum1').textContent = total1;
+                document.getElementById('sum2').textContent = total2;
+                document.getElementById('sum3').textContent = total3;
+                document.getElementById('grandTotal').textContent = grandTotal;
+            } catch (error) {
+                console.error('Fetch error:', error);
+                // Optionally display an error message to the user
+                document.getElementById('data').innerHTML = '<tr><td colspan="4">Error fetching data. Please check the console.</td></tr>';
+            }
         };
 
         // Fetch data every 10 seconds (you can adjust the interval)
