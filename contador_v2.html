@@ -7,12 +7,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
-            <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- CSS -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/contador.css">
+    
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    
     <style>
         /* Add some basic styling */
         body {
@@ -88,15 +90,15 @@
 // Your Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCjQ0bA4lVhBmPrpU41uqnWfwjmLMihzYk",
-        authDomain: "kmxsalud-database.firebaseapp.com",
-        projectId: "kmxsalud-database",
-        storageBucket: "kmxsalud-database.appspot.com",
-        messagingSenderId: "216946537560",
-        appId: "1:216946537560:web:02019702598e3571bc062d"
+    authDomain: "kmxsalud-database.firebaseapp.com",
+    projectId: "kmxsalud-database",
+    storageBucket: "kmxsalud-database.appspot.com",
+    messagingSenderId: "216946537560",
+    appId: "1:216946537560:web:02019702598e3571bc062d"
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 
 // Initialize Firestore
 const db = firebase.firestore();
@@ -126,13 +128,22 @@ function listenForChanges() {
     });
 }
 
-// Add this after the listenForChanges function
+// Form submission event listener
 document.getElementById("kmForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the page from reloading
 
     let number1 = parseInt(document.getElementById("km1").value);
     let number2 = parseInt(document.getElementById("km2").value);
     let number3 = parseInt(document.getElementById("km3").value);
+
+    // Check if inputs are valid
+    console.log(`Inputs: ${number1}, ${number2}, ${number3}`);
+
+    // Check if any input is NaN
+    if (isNaN(number1) || isNaN(number2) || isNaN(number3)) {
+        console.error("One of the inputs is not a number.");
+        return; // Prevent submission if inputs are invalid
+    }
 
     // Update Firestore with the new values
     db.collection("numbers").doc("kmx").set({
