@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Results</title>
+    <title>Form Results Summary</title>
     <style>
         table {
             width: 50%;
@@ -18,45 +18,54 @@
     </style>
 </head>
 <body>
-    <h2 style="text-align: center;">Submitted Numbers and Their Sum</h2>
+    <h2 style="text-align: center;">Sum of Numbers</h2>
     <table>
         <thead>
             <tr>
-                <th>Number 1</th>
-                <th>Number 2</th>
-                <th>Number 3</th>
-                <th>Sum</th>
+                <th>Total Number 1</th>
+                <th>Total Number 2</th>
+                <th>Total Number 3</th>
+                <th>Grand Total (Sum of All)</th>
             </tr>
         </thead>
-        <tbody id="data"></tbody>
+        <tbody id="data">
+            <tr>
+                <td id="sum1"></td>
+                <td id="sum2"></td>
+                <td id="sum3"></td>
+                <td id="grandTotal"></td>
+            </tr>
+        </tbody>
     </table>
 
     <script>
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyeSxqFw9JPNNW7nFX0CbGyyQ9DevZ1AGWezYyW2n3TV-cUqdb74jWKei2ekWDWhB-EQjr1sEyzpp_/pub?output=csv';
-  // Replace with your actual CSV link
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyeSxqFw9JPNNW7nFX0CbGyyQ9DevZ1AGWezYyW2n3TV-cUqdb74jWKei2ekWDWhB-EQjr1sEyzpp_/pub?output=csv';  // Replace with your actual CSV link
 
         const fetchData = async () => {
             const response = await fetch(sheetUrl);
             const data = await response.text();
             const rows = data.split('\n').slice(1);  // Skip the header row
 
-            const tableBody = document.getElementById('data');
+            let total1 = 0, total2 = 0, total3 = 0;  // Variables to store the sums
+
             rows.forEach(row => {
                 const cells = row.split(',');
                 
-                // Skip the timestamp column (which is the first column, so we start at index 1)
+                // Add to totals (skipping the timestamp in the first column)
                 if (cells.length >= 4) {
-                    const newRow = document.createElement('tr');
-                    
-                    // Process columns starting from the second column (skip the first timestamp column)
-                    for (let i = 1; i < 5; i++) {  // Starting from index 1 (Number 1) and going to index 4 (Sum)
-                        const cell = document.createElement('td');
-                        cell.textContent = cells[i];
-                        newRow.appendChild(cell);
-                    }
-                    tableBody.appendChild(newRow);
+                    total1 += parseFloat(cells[1]) || 0;  // Sum of "Number 1" inputs
+                    total2 += parseFloat(cells[2]) || 0;  // Sum of "Number 2" inputs
+                    total3 += parseFloat(cells[3]) || 0;  // Sum of "Number 3" inputs
                 }
             });
+
+            const grandTotal = total1 + total2 + total3;  // Grand total (sum of all numbers)
+
+            // Display the sums in the table
+            document.getElementById('sum1').textContent = total1;
+            document.getElementById('sum2').textContent = total2;
+            document.getElementById('sum3').textContent = total3;
+            document.getElementById('grandTotal').textContent = grandTotal;
         };
 
         fetchData();
