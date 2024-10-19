@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Data</title>
+    <title>deira</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,13 +20,13 @@
     <script>
         const url = 'https://script.google.com/macros/s/AKfycbzqcSPjyj2wUGdHpBcNTSB7DAY0DKDb3Mtzh5IOrBSXFlBdwH-MathT4fSDpqK06I52NA/exec'; // Replace with your web app URL
 
+        // Function to fetch and display data
         const fetchData = () => {
             fetch(url)
-                .then(response => response.text()) // Get response as text
-                .then(text => {
-                    console.log(text); // Log the raw response
-                    const data = JSON.parse(text); // Parse JSON
-                    const numbers = data.slice(0, 4); // Get first 4 elements (adjust if necessary)
+                .then(response => response.json()) // Get response as JSON
+                .then(data => {
+                    // Assume data is an array, and we only want to show columns B to E of the second row
+                    const numbers = data.slice(1, 5); // Adjust to fit your data structure
                     document.getElementById('data').innerText = numbers.join(', '); // Display the numbers
                 })
                 .catch(error => {
@@ -35,9 +35,11 @@
                 });
         };
 
-        // Fetch data immediately and then every 5 seconds
+        // Initial fetch
         fetchData();
-        setInterval(fetchData, 5000); // Refresh every 5 seconds
+        
+        // Set interval to fetch data every 10 seconds (10000 milliseconds)
+        setInterval(fetchData, 10000); // Fetch data every 10 seconds
     </script>
 </body>
 </html>
