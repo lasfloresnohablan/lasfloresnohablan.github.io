@@ -1,27 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Google Sheets Data</title>
-  <script>
-    async function fetchData() {
-      try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxhXGTzLN726wo6HcmYPk5a845yTYio0Ff1F-yoOqfZbEMCGKA4_XEXlTvftH5MelPbeA/exec'); // Use your actual URL
-        const data = await response.json();
-        document.getElementById('data1').textContent = data.input1;
-        document.getElementById('data2').textContent = data.input2;
-        document.getElementById('data3').textContent = data.input3;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-
-    window.onload = fetchData;
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Google Sheets Data</title>
+    <style>
+        iframe {
+            width: 100%;
+            height: 500px; /* Adjust height as needed */
+            border: none;
+        }
+    </style>
 </head>
 <body>
-  <h1>Data from Google Sheets</h1>
-  <p>Input 1: <span id="data1">Loading...</span></p>
-  <p>Input 2: <span id="data2">Loading...</span></p>
-  <p>Input 3: <span id="data3">Loading...</span></p>
+    <h1>Google Sheets Data</h1>
+    <iframe src="1gLbsn-KpixPtRcNPMju8rIWnCpnX7_UILvS_jSn1sKs"></iframe>
 </body>
 </html>
