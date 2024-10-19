@@ -1,42 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Sheets Row 2 Data</title>
-    <script>
-        function fetchData() {
-            // Google Sheets published CSV URL
-            const sheetURL = 'https://docs.google.com/spreadsheets/d/1gLbsn-KpixPtRcNPMju8rIWnCpnX7_UILvS_jSn1sKs/gviz/tq?tqx=out:csv&gid=458154701';
-            
-            // Fetch the CSV data from the Google Sheets URL
-            fetch(sheetURL)
-            .then(response => response.text())
-            .then(data => {
-                // Split the CSV data into rows
-                const rows = data.split('\n');
-                
-                // Grab the second row (index 1)
-                const row2 = rows[1].split(',');
+  <title>Google Sheets Data</title>
+  <script>
+    async function fetchData() {
+      try {
+        const response = await fetch('YOUR_WEB_APP_URL_HERE'); // Replace with your Apps Script Web App URL
+        const data = await response.json();
+        document.getElementById('data1').textContent = data.input1;
+        document.getElementById('data2').textContent = data.input2;
+        document.getElementById('data3').textContent = data.input3;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
 
-                // Display the row data in the HTML
-                document.getElementById('rowData').innerHTML = `
-                    <p><strong>Input 1:</strong> ${row2[1]}</p>
-                    <p><strong>Input 2:</strong> ${row2[2]}</p>
-                    <p><strong>Input 3:</strong> ${row2[3]}</p>
-                `;
-            })
-            .catch(error => console.error('Error fetching data:', error));
-        }
-
-        // Fetch the data when the page loads
-        window.onload = fetchData;
-    </script>
+    window.onload = fetchData;
+  </script>
 </head>
 <body>
-    <h1>Google Sheets Row 2 Data</h1>
-    <div id="rowData">
-        <p>Loading...</p>
-    </div>
+  <h1>Data from Google Sheets</h1>
+  <p>Input 1: <span id="data1">Loading...</span></p>
+  <p>Input 2: <span id="data2">Loading...</span></p>
+  <p>Input 3: <span id="data3">Loading...</span></p>
 </body>
 </html>
