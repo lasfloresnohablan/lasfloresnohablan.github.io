@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>der 9</title>
-     <style>
+    <title>der 10</title>
+    <style>
         body {
             font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
             background-color: #f4f4f4; /* Light background for the whole page */
@@ -22,27 +22,32 @@
             flex-wrap: wrap; /* Allow wrapping to the next line */
             justify-content: center; /* Center align items */
             margin: 50px auto; /* Center align the data container */
-                display: flex;
-  
-    background-color: #222;
- font-size: 8rem;
-    padding: 50px;
-    color: aliceblue;
-    font-weight: 200;
-}
+            padding: 50px;
+            background-color: #222;
+            color: aliceblue;
+            font-weight: 200;
+        }
+
+        .container {
+            text-align: center; /* Center align text within each container */
+            margin: 10px; /* Margin between items */
+        }
+
+        .title {
+            color: #ccc; /* Light grey text color for the title */
+            font-size: 2rem; /* Font size for the title */
+            margin-bottom: 10px; /* Space between title and number */
         }
 
         .number {
             letter-spacing: 0px; /* No letter spacing */
             font-size: 9rem; /* Large font size */
-            text-align: center; /* Center align text */
             color: #ccc; /* Light grey text color */
             background-color: #222222; /* Dark background color */
             padding: 20px; /* Padding around the text */
             border-radius: 8px; /* Rounded corners */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
             max-width: calc(25% - 40px); /* Max width for the number container */
-            margin: 10px; /* Margin between items */
         }
 
         /* Responsive adjustments */
@@ -55,13 +60,10 @@
 </head>
 <body>
     <h1>Google Sheets Data</h1>
-  
 
-      <div id="data">
-        
-    </div>
+    <div id="data"></div>
     
-  <script>
+    <script>
         const url = 'https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'; // Use your Web App URL
 
         fetch(url)
@@ -69,10 +71,27 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.text();
+                return response.json(); // Assuming the data is in JSON format
             })
             .then(data => {
-                document.getElementById('data').innerText = data; // Display the numbers
+                const container = document.getElementById('data');
+                // Assuming data is an array of objects with title and number properties
+                data.forEach(item => {
+                    const itemContainer = document.createElement('div');
+                    itemContainer.classList.add('container');
+
+                    const titleDiv = document.createElement('div');
+                    titleDiv.classList.add('title');
+                    titleDiv.innerText = item.title; // Set the title from the data
+
+                    const numberDiv = document.createElement('div');
+                    numberDiv.classList.add('number');
+                    numberDiv.innerText = item.number; // Set the number from the data
+
+                    itemContainer.appendChild(titleDiv); // Append title
+                    itemContainer.appendChild(numberDiv); // Append number
+                    container.appendChild(itemContainer); // Append the container to the main div
+                });
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
