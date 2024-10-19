@@ -3,68 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>estable</title>
-     <style>
-        body {
-            font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-            background-color: #f4f4f4; /* Light background for the whole page */
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333; /* Dark text color for the heading */
-        }
-
-        #data {
-            display: flex; /* Use flexbox for layout */
-            flex-wrap: wrap; /* Allow wrapping to the next line */
-            justify-content: center; /* Center align items */
-            margin: 50px auto; /* Center align the data container */
-                display: flex;
-  
-    background-color: #222;
- font-size: 8rem;
-    padding: 50px;
-    color: aliceblue;
-    font-weight: 200;
-}
-        }
-
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .number {
-                max-width: calc(100% - 40px); /* Full width on mobile */
-            }
-        }
-    </style>
+    <title>Column Titles and Values</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Google Sheets Data</h1>
-  
+    <h1>Column Titles and Values</h1>
+    <table id="data-table">
+        <thead>
+            <tr id="titles-row"></tr>
+        </thead>
+        <tbody id="data-body">
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
 
-      <div id="data">
-        
-    </div>
-    
-  <script>
-        const url = 'https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'; // Use your Web App URL
-
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
+    <script>
+        fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec') // Replace with your Apps Script URL
+            .then(response => response.json())
             .then(data => {
-                document.getElementById('data').innerText = data; // Display the numbers
+                const titlesRow = document.getElementById('titles-row');
+                const dataBody = document.getElementById('data-body');
+
+                // Assuming the first row is the titles and the second row is the values
+                const titles = data[0]; // First row as titles (Row 1)
+                const values = data[1]; // Second row as values (Row 2)
+
+                // Create a row for values
+                const valuesRow = document.createElement('tr');
+                values.forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    valuesRow.appendChild(td);
+                });
+                dataBody.appendChild(valuesRow);
+
+                // Create a header row for titles
+                titles.forEach(title => {
+                    const th = document.createElement('th');
+                    th.textContent = title;
+                    titlesRow.appendChild(th);
+                });
             })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+            .catch(error => console.error('Error fetching data:', error));
     </script>
 </body>
 </html>
