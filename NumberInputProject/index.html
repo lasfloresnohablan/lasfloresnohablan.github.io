@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>der 9</title>
-     <style>
+    <title>abandon ship</title>
+    <style>
         body {
             font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
             background-color: #f4f4f4; /* Light background for the whole page */
@@ -22,20 +22,32 @@
             flex-wrap: wrap; /* Allow wrapping to the next line */
             justify-content: center; /* Center align items */
             margin: 50px auto; /* Center align the data container */
-                display: flex;
-  
-    background-color: #222;
- font-size: 8rem;
-    padding: 50px;
-    color: aliceblue;
-    font-weight: 200;
-}
         }
 
+        .container {
+            text-align: center; /* Center align text */
+            margin: 10px; /* Margin between items */
+            max-width: calc(25% - 40px); /* Max width for the number container */
+        }
+
+        .title {
+            color: #ccc; /* Light grey text color */
+            font-size: 2rem; /* Title font size */
+            margin-bottom: 10px; /* Space between title and number */
+        }
+
+        .number {
+            font-size: 4rem; /* Large font size for numbers */
+            color: #ccc; /* Light grey text color */
+            background-color: #222222; /* Dark background color */
+            padding: 20px; /* Padding around the text */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .number {
+            .container {
                 max-width: calc(100% - 40px); /* Full width on mobile */
             }
         }
@@ -43,13 +55,9 @@
 </head>
 <body>
     <h1>Google Sheets Data</h1>
-  
+    <div id="data"></div>
 
-      <div id="data">
-        
-    </div>
-    
-  <script>
+    <script>
         const url = 'https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'; // Use your Web App URL
 
         fetch(url)
@@ -60,7 +68,32 @@
                 return response.text();
             })
             .then(data => {
-                document.getElementById('data').innerText = data; // Display the numbers
+                const lines = data.trim().split('\n'); // Split data into lines
+                const headers = lines[0].split('\t'); // Get headers (first line)
+                const values = lines.slice(1); // Get all values except the header
+
+                values.forEach(row => {
+                    const columns = row.split('\t'); // Split each row into columns
+                    const itemContainer = document.createElement('div');
+                    itemContainer.classList.add('container');
+
+                    // Loop through each column, excluding the timestamp
+                    for (let i = 1; i < columns.length; i++) {
+                        const titleDiv = document.createElement('div');
+                        titleDiv.classList.add('title');
+                        titleDiv.innerText = headers[i]; // Set title from headers
+
+                        const numberDiv = document.createElement('div');
+                        numberDiv.classList.add('number');
+                        numberDiv.innerText = columns[i] || 0; // Set number or 0 if missing
+
+                        // Append title and number to the item container
+                        itemContainer.appendChild(titleDiv);
+                        itemContainer.appendChild(numberDiv);
+                    }
+
+                    document.getElementById('data').appendChild(itemContainer); // Add item container to data div
+                });
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
