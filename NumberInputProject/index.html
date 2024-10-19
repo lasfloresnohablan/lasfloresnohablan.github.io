@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Sheets Data</title>
-    <style>
+    <title>der 9</title>
+     <style>
         body {
             font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
             background-color: #f4f4f4; /* Light background for the whole page */
@@ -22,32 +22,20 @@
             flex-wrap: wrap; /* Allow wrapping to the next line */
             justify-content: center; /* Center align items */
             margin: 50px auto; /* Center align the data container */
+                display: flex;
+  
+    background-color: #222;
+ font-size: 8rem;
+    padding: 50px;
+    color: aliceblue;
+    font-weight: 200;
+}
         }
 
-        .container {
-            text-align: center; /* Center align text */
-            margin: 10px; /* Margin between items */
-            max-width: calc(25% - 40px); /* Max width for the number container */
-        }
-
-        .title {
-            color: #ccc; /* Light grey text color */
-            font-size: 2rem; /* Title font size */
-            margin-bottom: 10px; /* Space between title and number */
-        }
-
-        .number {
-            font-size: 4rem; /* Large font size for numbers */
-            color: #ccc; /* Light grey text color */
-            background-color: #222222; /* Dark background color */
-            padding: 20px; /* Padding around the text */
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
-        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .container {
+            .number {
                 max-width: calc(100% - 40px); /* Full width on mobile */
             }
         }
@@ -55,72 +43,27 @@
 </head>
 <body>
     <h1>Google Sheets Data</h1>
-    <div id="data"></div>
+  
 
-    <script>
-        const url = 'YOUR_WEB_APP_URL'; // Replace with your Web App URL
+      <div id="data">
+        
+    </div>
+    
+  <script>
+        const url = 'https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'; // Use your Web App URL
 
         fetch(url)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json(); // Parse JSON response
+                return response.text();
             })
             .then(data => {
-                const container = document.getElementById('data');
-
-                // Loop through each item and create elements for titles and numbers
-                data.forEach(item => {
-                    const itemContainer = document.createElement('div');
-                    itemContainer.classList.add('container');
-
-                    const titleDivViernes = document.createElement('div');
-                    titleDivViernes.classList.add('title');
-                    titleDivViernes.innerText = 'Viernes'; // Title for Viernes
-
-                    const numberDivViernes = document.createElement('div');
-                    numberDivViernes.classList.add('number');
-                    numberDivViernes.innerText = item.viernes || 0; // Number for Viernes
-
-                    const titleDivSabado = document.createElement('div');
-                    titleDivSabado.classList.add('title');
-                    titleDivSabado.innerText = 'Sábado'; // Title for Sábado
-
-                    const numberDivSabado = document.createElement('div');
-                    numberDivSabado.classList.add('number');
-                    numberDivSabado.innerText = item.sabado || 0; // Number for Sábado
-
-                    const titleDivDomingo = document.createElement('div');
-                    titleDivDomingo.classList.add('title');
-                    titleDivDomingo.innerText = 'Domingo'; // Title for Domingo
-
-                    const numberDivDomingo = document.createElement('div');
-                    numberDivDomingo.classList.add('number');
-                    numberDivDomingo.innerText = item.domingo || 0; // Number for Domingo
-
-                    const titleDivSum = document.createElement('div');
-                    titleDivSum.classList.add('title');
-                    titleDivSum.innerText = 'Sum'; // Title for Sum
-
-                    const numberDivSum = document.createElement('div');
-                    numberDivSum.classList.add('number');
-                    numberDivSum.innerText = item.sum || 0; // Number for Sum
-
-                    // Append titles and numbers to the container
-                    itemContainer.appendChild(titleDivViernes);
-                    itemContainer.appendChild(numberDivViernes);
-                    itemContainer.appendChild(titleDivSabado);
-                    itemContainer.appendChild(numberDivSabado);
-                    itemContainer.appendChild(titleDivDomingo);
-                    itemContainer.appendChild(numberDivDomingo);
-                    itemContainer.appendChild(titleDivSum);
-                    itemContainer.appendChild(numberDivSum);
-                    container.appendChild(itemContainer);
-                });
+                document.getElementById('data').innerText = data; // Display the numbers
             })
             .catch(error => {
-                console.error('Error fetching data:', error); // Catch fetch errors
+                console.error('Error fetching data:', error);
             });
     </script>
 </body>
