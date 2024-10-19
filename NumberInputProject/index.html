@@ -3,52 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>abandon ship 1</title>
+    <title>deira 6</title>
     <style>
         body {
-            font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-            background-color: #f4f4f4; /* Light background for the whole page */
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
         }
 
         h1 {
             text-align: center;
-            color: #333; /* Dark text color for the heading */
+            color: #333;
         }
 
         #data {
-            display: flex; /* Use flexbox for layout */
-            flex-wrap: wrap; /* Allow wrapping to the next line */
-            justify-content: center; /* Center align items */
-            margin: 50px auto; /* Center align the data container */
-        }
-
-        .container {
-            text-align: center; /* Center align text */
-            margin: 10px; /* Margin between items */
-            max-width: calc(25% - 40px); /* Max width for the number container */
-        }
-
-        .title {
-            color: #ccc; /* Light grey text color */
-            font-size: 2rem; /* Title font size */
-            margin-bottom: 10px; /* Space between title and number */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 50px auto;
         }
 
         .number {
-            font-size: 4rem; /* Large font size for numbers */
-            color: #ccc; /* Light grey text color */
-            background-color: #222222; /* Dark background color */
-            padding: 20px; /* Padding around the text */
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            text-align: center;
+            flex: 1 1 calc(25% - 20px); /* Responsive width */
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .container {
-                max-width: calc(100% - 40px); /* Full width on mobile */
+            .number {
+                flex: 1 1 calc(50% - 20px); /* Two items per row on small screens */
             }
         }
     </style>
@@ -60,29 +50,31 @@
     <script>
         const url = 'https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'; // Use your Web App URL
 
-       fetch(url)
-    .then(response => {
-        console.log('Response Status:', response.status); // Log response status
-        console.log('Response Headers:', response.headers); // Log headers for debugging
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                const lines = data.trim().split('\n'); // Split data into lines
+                const headers = lines[0].split('\t'); // Get headers (first line)
+                const values = lines.slice(1); // Get all values except the header
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
-    .then(data => {
-        console.log('Fetched Data:', data); // Log the fetched data for debugging
+                const dataDiv = document.getElementById('data');
+                dataDiv.innerHTML = ''; // Clear existing content
 
-        const lines = data.trim().split('\n'); // Split data into lines
-        const headers = lines[0].split('\t'); // Get headers (first line)
-        const values = lines.slice(1); // Get all values except the header
-
-        // ... [Rest of the code]
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
-
+                values.forEach(line => {
+                    const cols = line.split('\t'); // Split each line into columns
+                    cols.forEach((value, index) => {
+                        if (value) { // Only add non-empty values
+                            const numberDiv = document.createElement('div');
+                            numberDiv.className = 'number';
+                            numberDiv.innerHTML = `<strong>${headers[index]}</strong><br>${value}`; // Title and value
+                            dataDiv.appendChild(numberDiv);
+                        }
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     </script>
 </body>
 </html>
