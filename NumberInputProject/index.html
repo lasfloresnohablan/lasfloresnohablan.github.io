@@ -17,35 +17,32 @@
     <h1>Google Sheets Data</h1>
     <div id="data">Loading...</div>
     
-    <script>
-        const url = 'https://script.google.com/macros/s/AKfycbzqcSPjyj2wUGdHpBcNTSB7DAY0DKDb3Mtzh5IOrBSXFlBdwH-MathT4fSDpqK06I52NA/exec'; // Replace with your web app URL
+   <script>
+    const url = 'https://script.google.com/macros/s/AKfycbxKjW4JVocmxp4lI2-EBh6dsRb6W03OYhpcOUbuUn0VZDuaLZIk1TgIYOg14c4gN7LUTA/exec'; // Replace with your web app URL
 
-  
+    function fetchData() {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json(); // Parse JSON directly
+            })
+            .then(data => {
+                // Assuming data is an array and you want to display the numbers in the second row
+                const secondRow = data[0]; // Get the second row (first index)
+                const displayData = secondRow.join(', '); // Join numbers with commas
+                document.getElementById('data').innerText = displayData; // Display the numbers
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
 
-const fetchData = () => {
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json(); // Parse JSON response
-        })
-        .then(data => {
-            document.getElementById('data').innerText = data.data.join(', '); // Display numbers
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            document.getElementById('data').innerText = 'Error fetching data';
-        });
-};
+    // Fetch data every 10 seconds
+    setInterval(fetchData, 10000);
+    fetchData(); // Initial fetch
+</script>
 
-// Fetch data every 10 seconds
-setInterval(fetchData, 10000); 
-fetchData(); // Initial fetch
-
-
-
-   
-    </script>
 </body>
 </html>
