@@ -3,58 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bah2h</title>
+    <title>tress</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* General table styles */
-        #data-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        #data-table th, #data-table td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 600px) {
-            #data-table {
-                display: block;
-                border: none;
-            }
-
-            #data-table thead {
-                display: none; /* Hide the header on small screens */
-            }
-
-            #data-body tr {
-                display: block;
-                margin-bottom: 10px; /* Space between rows */
-            }
-
-            #data-body td {
-                display: block;
-                text-align: right;
-                position: relative;
-                padding-left: 50%; /* Space for the label */
-                border: none;
-                border-bottom: 1px solid #ccc; /* Bottom border for separation */
-            }
-
-            #data-body td:before {
-                content: attr(data-label); /* Use data-label for headers */
-                position: absolute;
-                left: 10px;
-                text-align: left;
-                font-weight: bold;
-            }
-        }
-    </style>
 </head>
+
+ <style>
+             th{
+            text-align: center;
+    padding-top: 25px;
+    color: #48c1bd;
+    text-transform: capitalize;
+    font-size: 20px;}
+
+        td{
+            letter-spacing: 0px;
+    font-size: 9rem;
+    text-align: center;
+    color: #ccc;}
+
+ </style>
 <body>
-    <h1>Column Titles and Values</h1>
+    <h1>exec</h1>
     <table id="data-table">
         <thead>
             <tr id="titles-row"></tr>
@@ -65,40 +34,33 @@
     </table>
 
     <script>
-      fetch('https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'') // Replace with your Apps Script URL
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        const titlesRow = document.getElementById('titles-row');
-        const dataBody = document.getElementById('data-body');
+        fetch('https://script.google.com/macros/s/AKfycbyvjvDSZSPkTrjOF1NUB--0SOfFyNPA-Jgu07khlXCmXWyLglaps8bSN770p7ZSFPtlUg/exec') // Replace with your Apps Script URL
+            .then(response => response.json())
+            .then(data => {
+                const titlesRow = document.getElementById('titles-row');
+                const dataBody = document.getElementById('data-body');
 
-        // Assuming the first row is the titles and the second row is the values
-        const titles = data[0]; // First row as titles (Row 1)
-        const values = data[1]; // Second row as values (Row 2)
+                // Assuming the first row is the titles and the second row is the values
+                const titles = data[0]; // First row as titles (Row 1)
+                const values = data[1]; // Second row as values (Row 2)
 
-        // Create a row for values
-        const valuesRow = document.createElement('tr');
-        values.forEach((value, index) => {
-            const td = document.createElement('td');
-            td.textContent = value;
-            td.setAttribute('data-label', titles[index]); // Set data-label for responsive display
-            valuesRow.appendChild(td);
-        });
-        dataBody.appendChild(valuesRow);
+                // Create a row for values
+                const valuesRow = document.createElement('tr');
+                values.forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    valuesRow.appendChild(td);
+                });
+                dataBody.appendChild(valuesRow);
 
-        // Create a header row for titles
-        titles.forEach(title => {
-            const th = document.createElement('th');
-            th.textContent = title;
-            titlesRow.appendChild(th);
-        });
-    })
-    .catch(error => console.error('Error fetching data:', error));
-
+                // Create a header row for titles
+                titles.forEach(title => {
+                    const th = document.createElement('th');
+                    th.textContent = title;
+                    titlesRow.appendChild(th);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
     </script>
 </body>
 </html>
