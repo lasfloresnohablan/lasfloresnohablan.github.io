@@ -3,85 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Results Summary</title>
-    <style>
-        table {
-            width: 50%;
-            margin: 20px auto;
-            border-collapse: collapse;
+    <title>Google Sheets Row 2 Data</title>
+    <script>
+        function fetchData() {
+            // Google Sheets published CSV URL
+            const sheetURL = 'https://docs.google.com/spreadsheets/d/1gLbsn-KpixPtRcNPMju8rIWnCpnX7_UILvS_jSn1sKs/gviz/tq?tqx=out:csv&gid=458154701';
+            
+            // Fetch the CSV data from the Google Sheets URL
+            fetch(sheetURL)
+            .then(response => response.text())
+            .then(data => {
+                // Split the CSV data into rows
+                const rows = data.split('\n');
+                
+                // Grab the second row (index 1)
+                const row2 = rows[1].split(',');
+
+                // Display the row data in the HTML
+                document.getElementById('rowData').innerHTML = `
+                    <p><strong>Input 1:</strong> ${row2[1]}</p>
+                    <p><strong>Input 2:</strong> ${row2[2]}</p>
+                    <p><strong>Input 3:</strong> ${row2[3]}</p>
+                `;
+            })
+            .catch(error => console.error('Error fetching data:', error));
         }
-        table, th, td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
+
+        // Fetch the data when the page loads
+        window.onload = fetchData;
+    </script>
 </head>
 <body>
-    <h2 style="text-align: center;">Sum of Numbers</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Total Number 1</th>
-                <th>Total Number 2</th>
-                <th>Total Number 3</th>
-                <th>Grand Total (Sum of All)</th>
-            </tr>
-        </thead>
-        <tbody id="data">
-            <tr>
-                <td id="sum1"></td>
-                <td id="sum2"></td>
-                <td id="sum3"></td>
-                <td id="grandTotal"></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <script>
-        // Your published CSV link
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyeSxqFw9JPNNW7nFX0CbGyyQ9DevZ1AGWezYyW2n3TV-cUqdb74jWKei2ekWDWhB-EQjr1sEyzpp_/pub?output=csv'; 
-
-        const fetchData = async () => {
-            try {
-                const response = await fetch(sheetUrl + '?cachebuster=' + new Date().getTime());
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.text();
-                const rows = data.split('\n').slice(1);  // Skip the header row
-
-                let total1 = 0, total2 = 0, total3 = 0;
-
-                rows.forEach(row => {
-                    const cells = row.split(',');
-                    
-                    // Add to totals (skipping the timestamp in the first column)
-                    if (cells.length >= 4) {
-                        total1 += parseFloat(cells[1]) || 0;
-                        total2 += parseFloat(cells[2]) || 0;
-                        total3 += parseFloat(cells[3]) || 0;
-                    }
-                });
-
-                const grandTotal = total1 + total2 + total3;
-
-                // Display the sums in the table
-                document.getElementById('sum1').textContent = total1;
-                document.getElementById('sum2').textContent = total2;
-                document.getElementById('sum3').textContent = total3;
-                document.getElementById('grandTotal').textContent = grandTotal;
-            } catch (error) {
-                console.error('Fetch error:', error);
-                document.getElementById('data').innerHTML = '<tr><td colspan="4">This is a fucking error showing up</td></tr>';
-            }
-        };
-
-        // Fetch data every 10 seconds (you can adjust the interval)
-        setInterval(fetchData, 10000);  // 10,000 ms = 10 seconds
-        fetchData();  // Fetch initially
-    </script>
+    <h1>Google Sheets Row 2 Data</h1>
+    <div id="rowData">
+        <p>Loading...</p>
+    </div>
 </body>
 </html>
