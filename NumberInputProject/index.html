@@ -3,74 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Sheets Data</title>
-    <style>
+    <title>estable</title>
+     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+            background-color: #f4f4f4; /* Light background for the whole page */
             margin: 0;
             padding: 20px;
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #333; /* Dark text color for the heading */
         }
 
         #data {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 50px auto;
+            display: flex; /* Use flexbox for layout */
+            flex-wrap: wrap; /* Allow wrapping to the next line */
+            justify-content: center; /* Center align items */
+            margin: 50px auto; /* Center align the data container */
+                display: flex;
+  
+    background-color: #222;
+ font-size: 8rem;
+    padding: 50px;
+    color: aliceblue;
+    font-weight: 200;
+}
         }
 
-        .number {
-            background-color: #222;
-            color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 10px;
-            text-align: center;
-            flex: 1 1 calc(25% - 20px); /* Responsive width */
-        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .number {
-                flex: 1 1 calc(50% - 20px); /* Two items per row on small screens */
+                max-width: calc(100% - 40px); /* Full width on mobile */
             }
         }
     </style>
 </head>
 <body>
     <h1>Google Sheets Data</h1>
-    <div id="data"></div>
+  
 
-    <script>
+      <div id="data">
+        
+    </div>
+    
+  <script>
         const url = 'https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'; // Use your Web App URL
 
         fetch(url)
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
             .then(data => {
-                const lines = data.trim().split('\n'); // Split data into lines
-                const headers = lines[0].split('\t'); // Get headers (first line)
-                const values = lines.slice(1); // Get all values except the header
-
-                const dataDiv = document.getElementById('data');
-                dataDiv.innerHTML = ''; // Clear existing content
-
-                values.forEach(line => {
-                    const cols = line.split('\t'); // Split each line into columns
-                    cols.forEach((value, index) => {
-                        if (value) { // Only add non-empty values
-                            const numberDiv = document.createElement('div');
-                            numberDiv.className = 'number';
-                            numberDiv.innerHTML = `<strong>${headers[index]}</strong><br>${value}`; // Title and value
-                            dataDiv.appendChild(numberDiv);
-                        }
-                    });
-                });
+                document.getElementById('data').innerText = data; // Display the numbers
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
