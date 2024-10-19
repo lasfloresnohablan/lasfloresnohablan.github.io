@@ -22,10 +22,11 @@
 
         const fetchData = () => {
             fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Assuming your data is an array of arrays
-                    const numbers = data[1].slice(1, 5); // Get the 2nd row, columns B to E
+                .then(response => response.text()) // Get response as text
+                .then(text => {
+                    console.log(text); // Log the raw response
+                    const data = JSON.parse(text); // Parse JSON
+                    const numbers = data.slice(0, 4); // Get first 4 elements (adjust if necessary)
                     document.getElementById('data').innerText = numbers.join(', '); // Display the numbers
                 })
                 .catch(error => {
@@ -40,4 +41,3 @@
     </script>
 </body>
 </html>
-
