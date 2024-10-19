@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>der 5</title>
+    <title>der 6</title>
      <style>
         body {
             font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
@@ -57,7 +57,7 @@
     <h1>Google Sheets Data</h1>
     <div id="data"></div>
     
-    <script>
+  <script>
         const url = 'https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'; // Use your Web App URL
 
         fetch(url)
@@ -65,13 +65,33 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.text();
+                return response.json(); // Assuming your data is in JSON format
             })
             .then(data => {
-                document.getElementById('data').innerText = data; // Display the numbers
+                // Clear existing data
+                document.getElementById('data').innerHTML = '';
+
+                // Assuming data is an array of objects with display names and numbers
+                data.forEach(item => {
+                    const numberContainer = document.createElement('div');
+                    numberContainer.classList.add('number-container');
+
+                    const displayName = document.createElement('div');
+                    displayName.classList.add('display-name');
+                    displayName.innerText = item.displayName; // Replace with the key for display name
+                    numberContainer.appendChild(displayName);
+
+                    const numberDiv = document.createElement('div');
+                    numberDiv.classList.add('number');
+                    numberDiv.innerText = item.number; // Replace with the key for number
+                    numberContainer.appendChild(numberDiv);
+
+                    document.getElementById('data').appendChild(numberContainer);
+                });
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
+                document.getElementById('data').innerText = 'Error loading data'; // Show error message
             });
     </script>
 </body>
