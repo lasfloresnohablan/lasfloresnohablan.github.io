@@ -65,34 +65,40 @@
     </table>
 
     <script>
-        fetch('https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'') // Replace with your Apps Script URL
-            .then(response => response.json())
-            .then(data => {
-                const titlesRow = document.getElementById('titles-row');
-                const dataBody = document.getElementById('data-body');
+      fetch('https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'') // Replace with your Apps Script URL
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const titlesRow = document.getElementById('titles-row');
+        const dataBody = document.getElementById('data-body');
 
-                // Assuming the first row is the titles and the second row is the values
-                const titles = data[0]; // First row as titles (Row 1)
-                const values = data[1]; // Second row as values (Row 2)
+        // Assuming the first row is the titles and the second row is the values
+        const titles = data[0]; // First row as titles (Row 1)
+        const values = data[1]; // Second row as values (Row 2)
 
-                // Create a row for values
-                const valuesRow = document.createElement('tr');
-                values.forEach((value, index) => {
-                    const td = document.createElement('td');
-                    td.textContent = value;
-                    td.setAttribute('data-label', titles[index]); // Set data-label for responsive display
-                    valuesRow.appendChild(td);
-                });
-                dataBody.appendChild(valuesRow);
+        // Create a row for values
+        const valuesRow = document.createElement('tr');
+        values.forEach((value, index) => {
+            const td = document.createElement('td');
+            td.textContent = value;
+            td.setAttribute('data-label', titles[index]); // Set data-label for responsive display
+            valuesRow.appendChild(td);
+        });
+        dataBody.appendChild(valuesRow);
 
-                // Create a header row for titles
-                titles.forEach(title => {
-                    const th = document.createElement('th');
-                    th.textContent = title;
-                    titlesRow.appendChild(th);
-                });
-            })
-            .catch(error => console.error('Error fetching data:', error));
+        // Create a header row for titles
+        titles.forEach(title => {
+            const th = document.createElement('th');
+            th.textContent = title;
+            titlesRow.appendChild(th);
+        });
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
     </script>
 </body>
 </html>
