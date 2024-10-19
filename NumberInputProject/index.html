@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>arrr</title>
+    <title>Column Titles and Values</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <style>
-        /* Responsive Styles */
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
@@ -17,7 +16,6 @@
         #data-table {
             width: 100%;
             border-collapse: collapse;
-            overflow: hidden;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin: 20px 0;
         }
@@ -35,6 +33,7 @@
             font-weight: 700;
         }
 
+        /* Responsive styles */
         @media (max-width: 600px) {
             #data-table {
                 display: block;
@@ -83,7 +82,8 @@
     </table>
 
     <script>
-        fetch('https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'') // Replace with your Apps Script URL
+        // Replace with your actual Google Apps Script URL
+        fetch('https://script.google.com/macros/s/AKfycbz-i8HU-SWNr1yVGwh2tILncnM9M-5R4YnW-V5p7VUjzXu7ZsyjLVDrWarBJ2uSm640PA/exec'') 
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -94,9 +94,18 @@
                 const titlesRow = document.getElementById('titles-row');
                 const dataBody = document.getElementById('data-body');
 
-                const titles = data[0];
-                const values = data[1];
+                // Assuming the first row is the titles and the second row is the values
+                const titles = data[0]; // First row as titles
+                const values = data[1]; // Second row as values
 
+                // Create header row for titles
+                titles.forEach(title => {
+                    const th = document.createElement('th');
+                    th.textContent = title;
+                    titlesRow.appendChild(th);
+                });
+
+                // Create a row for values
                 const valuesRow = document.createElement('tr');
                 values.forEach((value, index) => {
                     const td = document.createElement('td');
@@ -105,12 +114,6 @@
                     valuesRow.appendChild(td);
                 });
                 dataBody.appendChild(valuesRow);
-
-                titles.forEach(title => {
-                    const th = document.createElement('th');
-                    th.textContent = title;
-                    titlesRow.appendChild(th);
-                });
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
