@@ -397,6 +397,12 @@ hr {
    
     background-color: transparent!important;
 }
+
+/*Custom styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.section_01{
+  background-color: #f7f7f7;
+}
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*
