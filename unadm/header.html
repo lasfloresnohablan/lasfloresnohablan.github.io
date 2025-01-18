@@ -4,159 +4,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIT Navbar Replica</title>
-    <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <title>UnADM Navbar</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
 </head>
 
 <body>
-    <header style="position: fixed;
-    width: 100%;    z-index: 99999999999999999999;">
-        <div class="row">
-            <div class="six columns">
-                <a href="index.html"><img src="img/bannerSuperior.svg" class="logo"></a>
+    <header style="position: fixed; width: 100%; z-index: 9999;">
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    <a href="index.html"><img src="img/bannerSuperior.svg" class="logo"></a>
+                </div>
+                <div class="eight columns">
+                    <ul class="utilities">
+                        <li>Mesa de ayuda</li>
+                        <li>Preguntas frecuentes</li>
+                        <li>Transparencia</li>
+                        <li>Protección de datos personales</li>
+                    </ul>
+                </div>
             </div>
-            <div class="six columns">
-                <ul class="utilities">
-                    <li>Mesa de ayuda</li>
-                    <li>Preguntas frecuentes</li>
-                
-    
-          
-                    <li>Transparencia</li>
-                    <li>Protección de datos personales</li>
-                </ul>
-            </div>
-        </div>
-        <div class="navbar" style="background-color: #2e2e2e;">
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="item">Inicio</a></li>
-                    <li><a href="#" class="item">Nosotros</a></li>
-                    <li><a href="#">Oferta educativa</a></li>
-                    <li><a href="#">Gaceta</a></li>
-                    <li><a href="#">UnADM 360º</a></li>
-                    <li><a href="#">Extensión universitaria</a></li>
-                    <li><a href="#">Trámites y servicios</a></li>
-                    <li><a href="#">Vinculación</a></li>
-                    <li><a href="#">MiUnADM</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
+    <!-- Main menu -->
+    <nav class="menu ocultar" id="menu">
+        <div class="mitem"><a href="#" title="Inicio">Inicio</a></div>
+        <!-- Dropdown example -->
+        <div class="mitem dropdown">
+            <a href="#" title="Nosotros">Nosotros</a>
+            <ul class="dropdown-menu">
+                <li><a href="#historia">Consejo universitario</a></li>
+                <li><a href="#mision">Convocatorias</a></li>
+                <li><a href="#vision">Diez años, diez acciones</a></li>
+                <li><a href="#valores">Estructura orgánica</a></li>
+                <li><a href="#equipo">Historia, misión, visión y objetivo</a></li>
+                <li><a href="#contacto">Modelo curricular</a></li>
+                <li><a href="#contacto">Modelo educativo</a></li>
+                <li><a href="#contacto">Normatividad</a></li>
+            </ul>
+        </div>
+        <div class="mitem dropdown">
+            <a href="#" title="Oferta educativa" class="accordion-toggle">Oferta educativa</a>
+            <ul class="dropdown-menu accordion-content">
+                <li><a href="#licenciaturas" class="submenu-toggle">Licenciaturas</a>
+                    <!-- Submenu for Licenciaturas -->
+                    <ul class="submenu">
+                        <li><a href="#programa1">Ingeniería en Sistemas</a></li>
+                        <li><a href="#programa2">Administración</a></li>
+                        <li><a href="#programa3">Contaduría</a></li>
+                    </ul>
+                </li>
+                <li><a href="#posgrados" class="accordion-toggle">Posgrados</a>
+                    <!-- Submenu for Licenciaturas -->
+                    <ul class="submenu">
+                        <li><a href="#programa1">Ingeniería en Sistemas</a></li>
+                        <li><a href="#programa2">Administración</a></li>
+                        <li><a href="#programa3">Contaduría</a></li>
+                    </ul>
+                </li>
+                <li><a href="#TSU" class="accordion-toggle">TSU</a>
+                    <!-- Submenu for Licenciaturas -->
+                    <ul class="submenu">
+                        <li><a href="#programa1">Ingeniería en Sistemas</a></li>
+                        <li><a href="#programa2">Administración</a></li>
+                        <li><a href="#programa3">Contaduría</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="mitem"><a href="#sec04" title="Gaceta">Gaceta</a></div>
+        <div class="mitem dropdown">
+            <a href="#sec05" title="UnADM 360º">UnADM 360º</a>
+            <ul class="dropdown-menu">
+                <li><a href="#campus">Campus Virtual</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#tutorias">Tutorías</a></li>
+                <li><a href="#webinars">Webinars</a></li>
+                <li><a href="#foros">Foros</a></li>
+                <li><a href="#redes">Redes Sociales</a></li>
+            </ul>
+        </div>
+        <div class="mitem dropdown">
+            <a href="#sec06" title="Extensión universitaria">Extensión universitaria</a>
+            <ul class="dropdown-menu">
+                <li><a href="#idiomas">Idiomas</a></li>
+                <li><a href="#arte">Arte y Cultura</a></li>
+                <li><a href="#investigacion">Investigación</a></li>
+                <li><a href="#intercambio">Intercambio</a></li>
+                <li><a href="#comunidad">Comunidad</a></li>
+                <li><a href="#actividades">Actividades</a></li>
+            </ul>
+        </div>
+        <div class="mitem dropdown">
+            <a href="#sec07" title="Trámites y servicios">Trámites y servicios</a>
+            <ul class="dropdown-menu">
+                <li><a href="#admisiones">Admisiones</a></li>
+                <li><a href="#certificaciones">Certificaciones</a></li>
+                <li><a href="#documentos">Documentos</a></li>
+                <li><a href="#pagos">Pagos</a></li>
+                <li><a href="#consultas">Consultas</a></li>
+                <li><a href="#soporte">Soporte Técnico</a></li>
+            </ul>
+        </div>
+        <div class="mitem dropdown">
+            <a href="#sec08" title="Vinculación">Vinculación</a>
+            <ul class="dropdown-menu">
+                <li><a href="#empresas">Empresas</a></li>
+                <li><a href="#alianzas">Alianzas Estratégicas</a></li>
+                <li><a href="#practicas">Prácticas Profesionales</a></li>
+                <li><a href="#seminarios">Seminarios</a></li>
+                <li><a href="#programas">Programas de Apoyo</a></li>
+                <li><a href="#colaboraciones">Colaboraciones</a></li>
+            </ul>
+        </div>
+        <div class="mitem"><a href="#sec09" title="MiUnADM">MiUnADM</a></div>
+    </nav>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    header {
+        background-color: #fff;
+    }
+
+    .logo {
+        width: 140px;
+    }
+
+    .utilities {
+        display: inline-flex;
+        text-align: left;
+        font-size: 12px;
+        padding: 0 10px;
+        list-style: none;
+        gap: 20px;
+        padding-top: 40px;
+        float: right;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: row;
+        font-size: 0.9em;
+        line-height: 40px;
+        background-color: #2e2e2e;
+        position: fixed;
+        top: 100px;
+        z-index: 100;
+        color: white !important;
+        padding: 5px;
+        width: 100%;
+    }
+
+    .mitem {
+        flex: auto;
+        text-align: center;
+        position: relative;
+        /* For dropdown positioning */
+    }
+
+    .mitem a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease, text-decoration 0.3s ease;
+        padding-top: 5px;
+    }
+
+    .mitem a:hover {
+        color: white;
+        text-decoration: underline;
+        text-decoration-color: #ECD89A;
+        text-underline-offset: 4px;
+    }
+
+    /* Dropdown menu styles */
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        /* Position below the parent */
+        left: 0;
+        background-color: #2e2e2e;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        min-width: 200px;
+    }
+
+    .dropdown-menu li a {
+        padding: 10px 15px;
+        display: block;
+        color: white;
+        text-decoration: none;
+        text-align: left;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: #4a4a4a;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    /* Media query for devices with a max width of 768px */
+    @media screen and (max-width: 768px) {
+        .utilities {
+            padding-top: 0 !important;
+        }
+
+        .menu {
+            flex-direction: column;
+        }
+
+        .mitem {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            position: static;
+        }
+    }
+
+
+
+    /* Accordion styles */
+    .accordion-content {
+        display: none;
+        /* Initially hidden */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background-color: #2e2e2e;
+        border-left: 2px solid #4a4a4a;
+    }
+
+    .accordion-content li a {
+        display: block;
+
+        text-decoration: none;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+    .accordion-content li a:hover {
+        background-color: #4a4a4a;
+    }
+
+    /* Submenu styles */
+    .submenu {
+        display: none;
+        list-style: none;
+        margin: 0px;
+        background-color: #4a4a4a;
+    }
+
+    .submenu li a {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .submenu li a:hover {
+        background-color: #5e5e5e;
+    }
+
+    /* Styling the accordion toggle link */
+    .accordion-toggle {
+        cursor: pointer;
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 5px 0;
+    }
+
+    .accordion-toggle:hover {
+        text-decoration: underline;
+        text-decoration-color: #ECD89A;
+    }
+
+    /* Styling the submenu toggle link */
+    .submenu-toggle {
+        cursor: pointer;
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 5px 0;
+    }
+
+    .submenu-toggle:hover {
+        text-decoration: underline;
+        text-decoration-color: #ECD89A;
+    }
+    </style>
+    <script>
+    // JavaScript for accordion functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const accordions = document.querySelectorAll('.accordion-toggle');
+        const submenuToggles = document.querySelectorAll('.submenu-toggle');
+
+        // Toggle for main accordion (Oferta educativa)
+        accordions.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
+
+                const content = toggle.nextElementSibling;
+
+                if (content.classList.contains('open')) {
+                    // Close the submenu if it is open
+                    content.style.display = 'none';
+                    content.classList.remove('open');
+                } else {
+                    // Close any other open accordion menus
+                    document.querySelectorAll('.accordion-content.open').forEach(openMenu => {
+                        openMenu.style.display = 'none';
+                        openMenu.classList.remove('open');
+                    });
+
+                    // Open the clicked submenu
+                    content.style.display = 'block';
+                    content.classList.add('open');
+                }
+            });
+        });
+
+        // Toggle for submenu (Licenciaturas)
+        submenuToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
+
+                const submenu = toggle.nextElementSibling;
+
+                if (submenu.style.display === 'block') {
+                    // Close the submenu if it is open
+                    submenu.style.display = 'none';
+                } else {
+                    // Open the submenu
+                    submenu.style.display = 'block';
+                }
+            });
+        });
+    });
+    </script>
+    </style>
 </body>
 
 </html>
-<style type="text/css">
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-}
-
-header {
-    background-color: #fff;
-    padding: 10px 0;
-}
-
-.logo {
-    width: 140px;
-    /*position: fixed;*/
-
-}
-
-.utilities {
-    display: block;
-    text-align: right;
-    font-size: 12px;
-       padding: 0 10px;
-    list-style: none;
-}
-
-
-
-.navbar {
-
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-
-}
-
-
-
-.item {
-    flex: auto;
-    text-align: center;
-}
-
-
-.item a:hover,
-.item a:hover,
-.item a:focus,
-.item a:active {
-    color: white;
-    /* Keep the text white on hover */
-    text-decoration: underline;
-    /* Add underline on hover */
-    text-decoration-color: #ECD89A;
-    /* Set the underline color */
-    text-underline-offset: 4px;
-    /* Adjust the space between text and underline */
-}
-
-
-nav ul {
-    list-style: none;
-
-}
-
-nav ul li {
-    display: inline-block;
-    margin: 5px 0;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    padding: 10px 15px;
-    transition: background-color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: white;
-    /* Keep the text white on hover */
-    text-decoration: underline;
-    /* Add underline on hover */
-    text-decoration-color: #ECD89A;
-    /* Set the underline color */
-    text-underline-offset: 4px;
-    /* Adjust the space between text and underline */
-
-    @media (max-width: 768px) {
-        .navbar {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        nav ul {
-            flex-direction: column;
-            width: 100%;
-            text-align: left;
-        }
-
-        nav ul li {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-    }
-</style>
