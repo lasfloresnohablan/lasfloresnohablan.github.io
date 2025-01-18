@@ -5,20 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIT Navbar Replica</title>
+    <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
 </head>
 
 <body>
     <header style="position: fixed;
-    width: 100%;">
-    <a href="index.html"><img src="img/bannerSuperior.svg" class="logo"></a>
-        <ul class="utilities">
-            <li>Mesa de ayuda</li>
-            <li>Preguntas frecuentes</li>
-            <li>Transparencia</li>
-            <li>Protección de datos personales</li>
-        </ul>
+    width: 100%;    z-index: 99999999999999999999;">
+        <div class="row">
+            <div class="six columns">
+                <a href="index.html"><img src="img/bannerSuperior.svg" class="logo"></a>
+            </div>
+            <div class="six columns">
+                <ul class="utilities">
+                    <li>Mesa de ayuda</li>
+                    <li>Preguntas frecuentes</li>
+                
+    
+          
+                    <li>Transparencia</li>
+                    <li>Protección de datos personales</li>
+                </ul>
+            </div>
+        </div>
         <div class="navbar" style="background-color: #2e2e2e;">
-           
             <nav>
                 <ul>
                     <li><a href="index.html" class="item">Inicio</a></li>
@@ -52,21 +64,22 @@ header {
     background-color: #fff;
     padding: 10px 0;
 }
-.logo{
+
+.logo {
     width: 140px;
-    position: fixed;
+    /*position: fixed;*/
 
 }
+
 .utilities {
     display: block;
     text-align: right;
     font-size: 12px;
-    padding: 10px;
+       padding: 0 10px;
     list-style: none;
 }
-.utilities li{
-        padding: 5px 0;
-}
+
+
 
 .navbar {
 
@@ -75,7 +88,7 @@ header {
     justify-content: center;
     align-items: center;
     padding: 20px;
-   
+
 }
 
 
@@ -89,22 +102,26 @@ header {
 .item a:hover,
 .item a:hover,
 .item a:focus,
-.item a:active  {
-    color: white; /* Keep the text white on hover */
-    text-decoration: underline; /* Add underline on hover */
-    text-decoration-color: #ECD89A; /* Set the underline color */
-    text-underline-offset: 4px; /* Adjust the space between text and underline */
+.item a:active {
+    color: white;
+    /* Keep the text white on hover */
+    text-decoration: underline;
+    /* Add underline on hover */
+    text-decoration-color: #ECD89A;
+    /* Set the underline color */
+    text-underline-offset: 4px;
+    /* Adjust the space between text and underline */
 }
 
 
 nav ul {
     list-style: none;
-   
+
 }
 
 nav ul li {
     display: inline-block;
-        margin: 5px 0;
+    margin: 5px 0;
 }
 
 nav ul li a {
@@ -116,26 +133,30 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-     color: white; /* Keep the text white on hover */
-    text-decoration: underline; /* Add underline on hover */
-    text-decoration-color: #ECD89A; /* Set the underline color */
-    text-underline-offset: 4px; /* Adjust the space between text and underline */
+    color: white;
+    /* Keep the text white on hover */
+    text-decoration: underline;
+    /* Add underline on hover */
+    text-decoration-color: #ECD89A;
+    /* Set the underline color */
+    text-underline-offset: 4px;
+    /* Adjust the space between text and underline */
 
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+    @media (max-width: 768px) {
+        .navbar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-    nav ul {
-        flex-direction: column;
-        width: 100%;
-        text-align: left;
-    }
+        nav ul {
+            flex-direction: column;
+            width: 100%;
+            text-align: left;
+        }
 
-    nav ul li {
-        width: 100%;
-        margin-bottom: 10px;
+        nav ul li {
+            width: 100%;
+            margin-bottom: 10px;
+        }
     }
-}
 </style>
