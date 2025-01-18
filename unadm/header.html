@@ -8,15 +8,21 @@
 </head>
 
 <body>
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <a href="https://www.mit.edu">MIT</a>
-            </div>
+    <header style="position: fixed;
+    width: 100%;">
+    <a href="index.html"><img src="img/bannerSuperior.svg" class="logo"></a>
+        <ul class="utilities">
+            <li>Mesa de ayuda</li>
+            <li>Preguntas frecuentes</li>
+            <li>Transparencia</li>
+            <li>Protección de datos personales</li>
+        </ul>
+        <div class="navbar" style="background-color: #2e2e2e;">
+           
             <nav>
                 <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="index.html" class="item">Inicio</a></li>
+                    <li><a href="#" class="item">Nosotros</a></li>
                     <li><a href="#">Oferta educativa</a></li>
                     <li><a href="#">Gaceta</a></li>
                     <li><a href="#">UnADM 360º</a></li>
@@ -29,7 +35,6 @@
         </div>
     </header>
 </body>
-
 
 </html>
 <style type="text/css">
@@ -44,51 +49,77 @@ body {
 }
 
 header {
-    background-color: #f7f7f7;
+    background-color: #fff;
     padding: 10px 0;
+}
+.logo{
+    width: 140px;
+    position: fixed;
+
+}
+.utilities {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    padding: 10px;
+    list-style: none;
+}
+.utilities li{
+        padding: 5px 0;
 }
 
 .navbar {
- 
+
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 20px;
-    position: fixed;
+   
 }
 
-.logo a {
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #a41034;
-    /* MIT Red */
+
+
+.item {
+    flex: auto;
+    text-align: center;
 }
+
+
+.item a:hover,
+.item a:hover,
+.item a:focus,
+.item a:active  {
+    color: white; /* Keep the text white on hover */
+    text-decoration: underline; /* Add underline on hover */
+    text-decoration-color: #ECD89A; /* Set the underline color */
+    text-underline-offset: 4px; /* Adjust the space between text and underline */
+}
+
 
 nav ul {
     list-style: none;
-    display: flex;
+   
 }
 
 nav ul li {
     display: inline-block;
+        margin: 5px 0;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #000;
+    color: #fff;
     font-size: 16px;
     padding: 10px 15px;
     transition: background-color 0.3s ease;
 }
 
 nav ul li a:hover {
-    background-color: #a41034;
-    /* MIT Red */
-    color: #fff;
-    border-radius: 5px;
-}
+     color: white; /* Keep the text white on hover */
+    text-decoration: underline; /* Add underline on hover */
+    text-decoration-color: #ECD89A; /* Set the underline color */
+    text-underline-offset: 4px; /* Adjust the space between text and underline */
 
 @media (max-width: 768px) {
     .navbar {
