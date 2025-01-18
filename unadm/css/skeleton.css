@@ -391,7 +391,12 @@ hr {
   display: table;
   clear: both; }
 
-
+/*overwrited
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+   
+    background-color: transparent!important;
+}
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*
