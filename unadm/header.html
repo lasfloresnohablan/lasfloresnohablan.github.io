@@ -29,12 +29,12 @@
     </header>
 
       <!-- Main menu -->
-    <nav class="custom-menu custom-hidden" id="menu">
-        <div class="custom-menu-item"><a href="#" title="Inicio">Inicio</a></div>
+      <nav class="custom-main-nav custom-hidden" id="menu">
+        <div class="custom-nav-item"><a href="#" title="Inicio">Inicio</a></div>
         <!-- Dropdown example -->
-        <div class="custom-menu-item custom-dropdown">
+        <div class="custom-nav-item custom-dropdown-nav">
             <a href="#" title="Nosotros">Nosotros</a>
-            <ul class="custom-dropdown-menu">
+            <ul class="custom-dropdown-list">
                 <li><a href="#historia">Consejo universitario</a></li>
                 <li><a href="#mision">Convocatorias</a></li>
                 <li><a href="#vision">Diez años, diez acciones</a></li>
@@ -45,28 +45,28 @@
                 <li><a href="#contacto">Normatividad</a></li>
             </ul>
         </div>
-        <div class="custom-menu-item custom-dropdown">
-            <a href="#" title="Oferta educativa" class="custom-accordion-toggle">Oferta educativa</a>
-            <ul class="custom-accordion-content">
+        <div class="custom-nav-item custom-dropdown-nav">
+            <a href="#" title="Oferta educativa" class="custom-dropdown-toggle">Oferta educativa</a>
+            <ul class="custom-dropdown-submenu">
                 <li><a href="#licenciaturas" class="custom-submenu-toggle">Licenciaturas</a>
                     <!-- Submenu for Licenciaturas -->
-                    <ul class="custom-submenu">
+                    <ul class="custom-submenu-list">
                         <li><a href="#programa1">Ingeniería en Sistemas</a></li>
                         <li><a href="#programa2">Administración</a></li>
                         <li><a href="#programa3">Contaduría</a></li>
                     </ul>
                 </li>
-                <li><a href="#posgrados" class="custom-accordion-toggle">Posgrados</a>
+                <li><a href="#posgrados" class="custom-dropdown-toggle">Posgrados</a>
                     <!-- Submenu for Posgrados -->
-                    <ul class="custom-submenu">
+                    <ul class="custom-submenu-list">
                         <li><a href="#programa1">Ingeniería en Sistemas</a></li>
                         <li><a href="#programa2">Administración</a></li>
                         <li><a href="#programa3">Contaduría</a></li>
                     </ul>
                 </li>
-                <li><a href="#TSU" class="custom-accordion-toggle">TSU</a>
+                <li><a href="#TSU" class="custom-dropdown-toggle">TSU</a>
                     <!-- Submenu for TSU -->
-                    <ul class="custom-submenu">
+                    <ul class="custom-submenu-list">
                         <li><a href="#programa1">Ingeniería en Sistemas</a></li>
                         <li><a href="#programa2">Administración</a></li>
                         <li><a href="#programa3">Contaduría</a></li>
@@ -74,10 +74,10 @@
                 </li>
             </ul>
         </div>
-        <div class="custom-menu-item"><a href="#sec04" title="Gaceta">Gaceta</a></div>
-        <div class="custom-menu-item custom-dropdown">
+        <div class="custom-nav-item"><a href="#sec04" title="Gaceta">Gaceta</a></div>
+        <div class="custom-nav-item custom-dropdown-nav">
             <a href="#sec05" title="UnADM 360º">UnADM 360º</a>
-            <ul class="custom-dropdown-menu">
+            <ul class="custom-dropdown-list">
                 <li><a href="#campus">Campus Virtual</a></li>
                 <li><a href="#eventos">Eventos</a></li>
                 <li><a href="#tutorias">Tutorías</a></li>
@@ -86,9 +86,9 @@
                 <li><a href="#redes">Redes Sociales</a></li>
             </ul>
         </div>
-        <div class="custom-menu-item custom-dropdown">
+        <div class="custom-nav-item custom-dropdown-nav">
             <a href="#sec06" title="Extensión universitaria">Extensión universitaria</a>
-            <ul class="custom-dropdown-menu">
+            <ul class="custom-dropdown-list">
                 <li><a href="#idiomas">Idiomas</a></li>
                 <li><a href="#arte">Arte y Cultura</a></li>
                 <li><a href="#investigacion">Investigación</a></li>
@@ -97,9 +97,9 @@
                 <li><a href="#actividades">Actividades</a></li>
             </ul>
         </div>
-        <div class="custom-menu-item custom-dropdown">
+        <div class="custom-nav-item custom-dropdown-nav">
             <a href="#sec07" title="Trámites y servicios">Trámites y servicios</a>
-            <ul class="custom-dropdown-menu">
+            <ul class="custom-dropdown-list">
                 <li><a href="#admisiones">Admisiones</a></li>
                 <li><a href="#certificaciones">Certificaciones</a></li>
                 <li><a href="#documentos">Documentos</a></li>
@@ -108,9 +108,9 @@
                 <li><a href="#soporte">Soporte Técnico</a></li>
             </ul>
         </div>
-        <div class="custom-menu-item custom-dropdown">
+        <div class="custom-nav-item custom-dropdown-nav">
             <a href="#sec08" title="Vinculación">Vinculación</a>
-            <ul class="custom-dropdown-menu">
+            <ul class="custom-dropdown-list">
                 <li><a href="#empresas">Empresas</a></li>
                 <li><a href="#alianzas">Alianzas Estratégicas</a></li>
                 <li><a href="#practicas">Prácticas Profesionales</a></li>
@@ -119,7 +119,7 @@
                 <li><a href="#colaboraciones">Colaboraciones</a></li>
             </ul>
         </div>
-        <div class="custom-menu-item"><a href="#sec09" title="MiUnADM">MiUnADM</a></div>
+        <div class="custom-nav-item"><a href="#sec09" title="MiUnADM">MiUnADM</a></div>
     </nav>
     <style>
     * {
@@ -151,7 +151,7 @@
         float: right;
     }
 
-    .custom-menu {
+    .custom-main-nav {
         display: flex;
         flex-direction: row;
         font-size: 0.9em;
@@ -165,14 +165,14 @@
         width: 100%;
     }
 
-    .custom-menu-item {
+    .custom-nav-item {
         flex: auto;
         text-align: center;
         position: relative;
         /* For dropdown positioning */
     }
 
-    .custom-menu-item a {
+    .custom-nav-item a {
         display: block;
         color: #fff;
         text-decoration: none;
@@ -180,7 +180,7 @@
         padding-top: 5px;
     }
 
-    .custom-menu-item a:hover {
+    .custom-nav-item a:hover {
         color: white;
         text-decoration: underline;
         text-decoration-color: #ECD89A;
@@ -188,7 +188,7 @@
     }
 
     /* Dropdown menu styles */
-    .custom-dropdown-menu {
+    .custom-dropdown-list {
         display: none;
         position: absolute;
         top: 100%;
@@ -202,7 +202,7 @@
         min-width: 200px;
     }
 
-    .custom-dropdown-menu li a {
+    .custom-dropdown-list li a {
         padding: 10px 15px;
         display: block;
         color: white;
@@ -210,11 +210,25 @@
         text-align: left;
     }
 
-    .custom-dropdown-menu li a:hover {
+    .custom-dropdown-list li a:hover {
         background-color: #4a4a4a;
     }
 
-    .custom-dropdown:hover .custom-dropdown-menu {
+    .custom-dropdown-nav:hover .custom-dropdown-list {
+        display: block;
+    }
+
+    /* Submenu styles */
+    .custom-submenu-list {
+        display: none;
+        background-color: #4a4a4a;
+    }
+
+    .custom-submenu-list li a {
+        padding: 8px 12px;
+    }
+
+    .custom-submenu-toggle:hover + .custom-submenu-list {
         display: block;
     }
 
@@ -224,24 +238,29 @@
             padding-top: 0 !important;
         }
 
-        .custom-menu {
+        .custom-main-nav {
             flex-direction: column;
         }
 
-        .custom-menu-item {
+        .custom-nav-item {
             width: 100%;
         }
 
-        .custom-dropdown-menu {
+        .custom-dropdown-list {
             position: static;
             box-shadow: none;
+        }
+
+        .custom-submenu-list {
+            position: static;
+            display: block;
         }
     }
     </style>
 
     <script>
         document.getElementById("menu").addEventListener("click", function (e) {
-            if (e.target && e.target.matches("a.custom-accordion-toggle")) {
+            if (e.target && e.target.matches("a.custom-dropdown-toggle")) {
                 let submenu = e.target.nextElementSibling;
                 if (submenu) {
                     submenu.style.display = submenu.style.display === "block" ? "none" : "block";
