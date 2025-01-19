@@ -1,73 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-
-  <!-- Basic Page Needs
+    <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Your page title here :)</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <!-- Mobile Specific Metas
+    <meta charset="utf-8">
+    <title>Your page title here :)</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- FONT
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
-  <!-- CSS
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-        <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
-
-  <!-- Favicon
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
+    <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
-  
-    <title>Home</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
+
 <body>
     <div id="header" style="position: absolute;
     top: 55px;"></div>
     <main>
         <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-      <section class="section_01" style="margin-top: 140px;">
-         <img src="img/banner_es_tiempo_de_mujeres_sin_violencia_ene-24.jpg" width="100%">
-  <div class="container_unadm">
-
-    <p><b>Informacion para:</b> Aspirantes / Alumnos / Profesores</p>
-    <div class="row">
-      <div class="one-half column" >
-        <h4>Basic Page</h4>
-        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
-      </div>
-    </div>
-  </div>
-      </section>
-
-<!-- End Document
+        <section class="section_01" style="margin-top: 140px;">
+            <img src="img/banner_es_tiempo_de_mujeres_sin_violencia_ene-24.jpg" width="100%">
+            <div class="container">
+              <br><br>
+                <p><b>Informacion para:</b> Aspirantes / Alumnos / Profesores</p>
+                <div class="row">
+                    <div class="one-half column">
+                        <h4>Basic Page</h4>
+                        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section_02">
+            <div class="container" style="text-align: center; width: 100%;">
+                <div class="testimonial-block testimonial-active">
+                    <img src="img/testimonial4.png" alt="Image 1">
+                    <div class="testimonial-img-p">
+                        Rosa María Ambrosio Bautista
+                        <div class="testimonial-secondary-text">Desarrollo de Software</div>
+                    </div>
+                    <button class="testimonial-show-button">Ver testimonial</button>
+                </div>
+                <div class="testimonial-block">
+                    <img src="img/testimonial5.png" alt="Image 2">
+                    <div class="testimonial-img-p">
+                        Erick Roldán Rangel Pérez
+                        <div class="testimonial-secondary-text">Gestión y Administración de PyME</div>
+                    </div>
+                    <button class="testimonial-show-button">Ver testimonial</button>
+                </div>
+                <div class="testimonial-block">
+                    <img src="img/testimonial2.png" alt="Image 3">
+                    <div class="testimonial-img-p">
+                        David Mendoza Armas
+                        <div class="testimonial-secondary-text">Derecho</div>
+                    </div>
+                    <button class="testimonial-show-button">Ver testimonial</button>
+                </div>
+                <div class="testimonial-block">
+                    <img src="img/testimonial1.png" alt="Image 4">
+                    <div class="testimonial-img-p">
+                        Estrella Salazar
+                        <div class="testimonial-secondary-text">Biotecnología</div>
+                    </div>
+                    <button class="testimonial-show-button">Ver testimonial</button>
+                </div>
+                <div class="testimonial-block">
+                    <img src="img/testimonial3.png" alt="Image 5">
+                    <div class="testimonial-img-p">
+                        Olga Zendejas
+                        <div class="testimonial-secondary-text">Gestión y Administración de PyME</div>
+                    </div>
+                    <button class="testimonial-show-button">Ver testimonial</button>
+                </div>
+            </div>
+        </section>
+        <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     </main>
     <script>
-        // Fetch the header HTML and insert it into the #header div
-        fetch('header.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Failed to load header: ${response.statusText}`);
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('header').innerHTML = data;
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    // Fetch the header HTML and insert it into the #header div
+    fetch('header.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to load header: ${response.statusText}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('header').innerHTML = data;
+        })
+        .catch(error => {
+            console.error(error);
+        });
     </script>
-      <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+    <script>
+    const blocks = document.querySelectorAll('.testimonial-block');
+
+    blocks.forEach(block => {
+        block.addEventListener('click', () => {
+            blocks.forEach(b => b.classList.remove('testimonial-active'));
+            block.classList.add('testimonial-active');
+        });
+    });
+    </script>
+    <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
 </body>
+
 </html>
