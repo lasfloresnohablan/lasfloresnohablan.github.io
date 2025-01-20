@@ -543,7 +543,40 @@ section{
         width: 10%;
       }
     }
+.unadm_card {
+            background-color: white;
+            padding: 20px;
+            -webkit-box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.45);
+            -moz-box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.45);
+            box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.45);
+        }
 
+        .unadm_card img {
+            width: 100%;
+        }
+
+        .unadm_card p {
+            text-align: justify;
+            padding: 10px 0px;
+        }
+
+        .unadm_arrow_up {
+
+            width: 30px !important;
+            /* Adjust the size as needed */
+            height: auto;
+            margin-left: 8px;
+            /* Adds space between the text and the arrow */
+            vertical-align: middle;
+            /* Ensures alignment with the text */
+            width: 30px;
+            float: right;
+
+        }
+
+        .unadm_card a {
+            text-decoration: none;
+            color: #1b68fa;
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*
