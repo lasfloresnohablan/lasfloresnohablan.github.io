@@ -15,6 +15,7 @@
       <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
    </head>
    <body>
+          <div id="loading">Cargando...</div>
       <div id="header" style="position: absolute;
          top: 55px;"></div>
       <main>
@@ -23,15 +24,21 @@
          <section class="section_01" style="margin-top:150px;">
             <div class="container">
                <div class="row">
+
                   <div class="four columns">
-                     <div class="gridCol centrar"><a href="index.php?option=com_content&amp;view=article&amp;id=246:datos-abiertos&amp;catid=39:transparencia" title="Datos abiertos"><img src="img/t_datosAbiertos.webp" alt="t datosAbiertos" width="400" height="200" /></a></div>
+                      <div class="gridCol centrar"><a href="index.php?option=com_content&amp;view=article&amp;id=246:datos-abiertos&amp;catid=39:transparencia" title="Datos abiertos"><img src="img/t_datosAbiertos.webp" alt="t datosAbiertos" width="400" height="200" /></a></div>
                   </div>
-                  <div class="four columns">
-                     <div class="gridCol centrar"><a href="https://consultapublicamx.inai.org.mx/vut-web/?idSujetoObigadoParametro=10010&amp;idEntidadParametro=33&amp;idSectorParametro=25" target="_blank" rel="noopener noreferrer" title="SIPOT"><img src="img/t_SIPOT.webp" alt="t SIPOT" width="400" height="200" /></a></div>
+
+                    <div class="four columns">
+                       <div class="gridCol centrar"><a href="https://consultapublicamx.inai.org.mx/vut-web/?idSujetoObigadoParametro=10010&amp;idEntidadParametro=33&amp;idSectorParametro=25" target="_blank" rel="noopener noreferrer" title="SIPOT"><img src="img/t_SIPOT.webp" alt="t SIPOT" width="400" height="200" /></a></div>
                   </div>
-                  <div class="four columns">
+
+                    <div class="four columns">
                      <div class="gridCol centrar"><a href="https://www.plataformadetransparencia.org.mx/" target="_blank" rel="noopener noreferrer" title="Plataforma Nacional de Transparencia"><img src="img/t_PNT.webp" alt="t POT" width="400" height="200" /></a></div>
-                  </div>
+                  </div>  
+                 
+                
+                  
                </div>
                <!-- -->
                <p>{tab title="Acceso a la información" class="green solid"}</p>
@@ -166,7 +173,7 @@
                      <p>{/sliders-ex}</p>
                      <p>&nbsp;</p>
                   </div>
-                  <button class="accordion">Obligaciones de Transparenciaƒ</button>
+                  <button class="accordion">Obligaciones de Transparencia</button>
                   <div class="panel">
                      <p>{slider title="Obligaciones de Transparencia" class="green"}</p>
                      <p>En términos de la Ley General y Federal de Transparencia y Acceso a la información pública, los sujetos obligados deberán publicar información relativa a las Obligaciones de Transparencia.</p>
@@ -1386,37 +1393,54 @@
             line-height: 4px;
             }
             .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-            }
-            /* Style the buttons inside the tab */
-            .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
-            line-height: 4px;
-            }
-            /* Change background color of buttons on hover */
-            .tab button:hover {
-            background-color: #ddd;
-            }
-            /* Create an active/current tablink class */
-            .tab button.active {
-            background-color: #ccc;
-            }
-            /* Style the tab content */
-            .tabcontent {
-            display: none;
-            padding: 6px 12px;
-            border: 1px solid #ccc;
-            border-top: none;
-            }
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+line-height: 4px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+ #loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
          </style>
          <script type="text/javascript">
             var acc = document.getElementsByClassName("accordion");
