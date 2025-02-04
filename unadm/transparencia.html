@@ -1491,15 +1491,17 @@ line-height: 4px;
          </script>
 
          <script type="text/javascript">
-            document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", function () {
     const breadcrumbsContainer = document.getElementById("breadcrumbs");
     const pathArray = window.location.pathname.split("/").filter(p => p);
 
-    let breadcrumbHTML = `<a href="/">Inicio</a>`;
-
+    let breadcrumbHTML = `<a href="/">Home</a>`;
     let path = "";
+
     pathArray.forEach((segment, index) => {
+        segment = segment.replace(".html", ""); // Remove .html extension
         path += `/${segment}`;
+        
         const isLast = index === pathArray.length - 1;
         breadcrumbHTML += ` > ${isLast ? `<span>${segment}</span>` : `<a href="${path}">${segment}</a>`}`;
     });
