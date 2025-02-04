@@ -18,10 +18,15 @@
       <div id="header" style="position: absolute;
          top: 55px;"></div>
       <main>
+         
+
          <!-- Primary Page Layout
             –––––––––––––––––––––––––––––––––––––––––––––––––– -->
          <section class="section_01" style="margin-top:150px;">
             <div class="container">
+                <br>
+               <nav id="breadcrumbs"></nav>
+               <br>
                <div class="row">
 
                   <div class="four columns">
@@ -1483,6 +1488,25 @@ line-height: 4px;
                     });
                 }
             });
+         </script>
+
+         <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+    const breadcrumbsContainer = document.getElementById("breadcrumbs");
+    const pathArray = window.location.pathname.split("/").filter(p => p);
+
+    let breadcrumbHTML = `<a href="/">Inicio</a>`;
+
+    let path = "";
+    pathArray.forEach((segment, index) => {
+        path += `/${segment}`;
+        const isLast = index === pathArray.length - 1;
+        breadcrumbHTML += ` > ${isLast ? `<span>${segment}</span>` : `<a href="${path}">${segment}</a>`}`;
+    });
+
+    breadcrumbsContainer.innerHTML = breadcrumbHTML;
+});
+
          </script>
          <!-- End Document
             –––––––––––––––––––––––––––––––––––––––––––––––––– -->
