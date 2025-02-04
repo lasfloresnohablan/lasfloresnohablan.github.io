@@ -14,8 +14,7 @@
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
    </head>
-   <body onload="hideLoading()">
-          <div id="loading">Cargando...</div>
+   <body>
       <div id="header" style="position: absolute;
          top: 55px;"></div>
       <main>
@@ -1430,25 +1429,11 @@ line-height: 4px;
 }
 
 
- #loading {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
+
          </style>
 
 
-         <script type="text/javascript">
-              function hideLoading() {
-            document.getElementById("loading").style.display = "none";
-        }
-         </script>
+  
          <script type="text/javascript">
             var acc = document.getElementsByClassName("accordion");
             var i;
