@@ -1491,7 +1491,7 @@ line-height: 4px;
          </script>
 
          <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     const breadcrumbsContainer = document.getElementById("breadcrumbs");
     const pathArray = window.location.pathname.split("/").filter(p => p);
 
@@ -1503,7 +1503,7 @@ line-height: 4px;
         path += `/${segment}`;
         
         const isLast = index === pathArray.length - 1;
-        breadcrumbHTML += ` > ${isLast ? `<span>${segment}</span>` : `<a href="${path}">${segment}</a>`}`;
+        breadcrumbHTML += ` / ${isLast ? `<span>${segment}</span>` : `<a href="${path}">${segment}</a>`}`;
     });
 
     breadcrumbsContainer.innerHTML = breadcrumbHTML;
