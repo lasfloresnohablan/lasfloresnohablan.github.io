@@ -22,3 +22,27 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
+
+
+// breadcrumbs
+        document.addEventListener("DOMContentLoaded", function() {
+            const breadcrumbsContainer = document.getElementById("breadcrumbs");
+            const pathArray = window.location.pathname.split("/").filter(p => p);
+
+            let breadcrumbHTML = `<a href="/">Inicio</a>`;
+            let path = "";
+
+            pathArray.forEach((segment, index) => {
+                segment = segment.replace(".html", ""); // Remove .html extension
+
+                // Capitalize the first letter of the segment
+                segment = segment.charAt(0).toUpperCase() + segment.slice(1);
+
+                path += `/${segment}`;
+
+                const isLast = index === pathArray.length - 1;
+                breadcrumbHTML += ` / ${isLast ? `<span>${segment}</span>` : `<a href="${path}">${segment}</a>`}`;
+            });
+
+            breadcrumbsContainer.innerHTML = breadcrumbHTML;
+        });
