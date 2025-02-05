@@ -318,20 +318,27 @@
         }
         </style>
         <script type="text/javascript">
-        var acc = document.getElementsByClassName("accordion");
-        var i;
+        document.addEventListener("DOMContentLoaded", function() {
+            var acc = document.getElementsByClassName("accordion");
 
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
-        }
+            for (let i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    let isActive = this.classList.contains("active");
+
+                    // Cierra todos los paneles
+                    for (let j = 0; j < acc.length; j++) {
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.maxHeight = null;
+                    }
+
+                    // Si el panel no estaba activo, lo abre
+                    if (!isActive) {
+                        this.classList.add("active");
+                        this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + "px";
+                    }
+                });
+            }
+        });
         </script>
         <script type="text/javascript">
         // breadcrumbs
