@@ -25,24 +25,23 @@ for (i = 0; i < acc.length; i++) {
 
 
 // breadcrumbs
-        document.addEventListener("DOMContentLoaded", function() {
-            const breadcrumbsContainer = document.getElementById("breadcrumbs");
-            const pathArray = window.location.pathname.split("/").filter(p => p);
+      document.addEventListener("DOMContentLoaded", function () {
+    const breadcrumbsContainer = document.getElementById("breadcrumbs");
+    if (!breadcrumbsContainer) return; // Prevent errors if the element is missing
 
-            let breadcrumbHTML = `<a href="/">Inicio</a>`;
-            let path = "";
+    const pathArray = window.location.pathname.split("/").filter(p => p);
 
-            pathArray.forEach((segment, index) => {
-                segment = segment.replace(".html", ""); // Remove .html extension
+    let breadcrumbHTML = `<a href="/">Inicio</a>`;
+    let path = "";
 
-                // Capitalize the first letter of the segment
-                segment = segment.charAt(0).toUpperCase() + segment.slice(1);
+    pathArray.forEach((segment, index) => {
+        let originalSegment = segment.replace(".html", ""); // Remove .html extension
+        let capitalizedSegment = originalSegment.charAt(0).toUpperCase() + originalSegment.slice(1); // Capitalized text
+        path += `/${originalSegment.toLowerCase()}`; // Ensure link remains lowercase
 
-                path += `/${segment}`;
+        const isLast = index === pathArray.length - 1;
+        breadcrumbHTML += ` / ${isLast ? `<span>${capitalizedSegment}</span>` : `<a href="${path}">${capitalizedSegment}</a>`}`;
+    });
 
-                const isLast = index === pathArray.length - 1;
-                breadcrumbHTML += ` / ${isLast ? `<span>${segment}</span>` : `<a href="${path}">${segment}</a>`}`;
-            });
-
-            breadcrumbsContainer.innerHTML = breadcrumbHTML;
-        });
+    breadcrumbsContainer.innerHTML = breadcrumbHTML;
+});
