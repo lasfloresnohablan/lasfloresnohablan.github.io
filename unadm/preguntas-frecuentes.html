@@ -36,6 +36,7 @@
             <div class="container">
                 <br>
                 <nav id="breadcrumbs"></nav>
+                <h5 id="dynamic-title"></h5>
                 <br>
                 <!-- FAQ
                   –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -439,11 +440,11 @@
         }
 
         .panel {
-            padding: 0 18px;
+            padding: 18px;
             background-color: white;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
+            /* max-height: 0; */
+            /* overflow: hidden; */
+            /* transition: max-height 0.2s */
         }
         </style>
         <script type="text/javascript">
@@ -492,9 +493,13 @@
             breadcrumbsContainer.innerHTML = breadcrumbHTML;
         });
         </script>
+        <script>
+            // Get the title content from the <title> tag
+    var pageTitle = document.title;
 
-
-      
+    // Set the text of the <h5> element with the title content
+    document.getElementById("dynamic-title").textContent = pageTitle;
+    </script>
         <!-- End Document
             –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <div id="unadm-pre-footer"></div>
