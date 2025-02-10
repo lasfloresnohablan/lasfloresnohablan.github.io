@@ -898,6 +898,13 @@ text-decoration: none;
   width: 80%;
 }
 
+.unadm_modal_title{
+line-height: 25px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px #2e2e2e;
+    color: #2e2e2e;
+}
+
 /* The Close Button */
 .close {
 color: #2e2e2e;
