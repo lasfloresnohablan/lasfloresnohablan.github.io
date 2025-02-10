@@ -900,10 +900,11 @@ text-decoration: none;
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+color: #2e2e2e;
+    float: right;
+    font-size: 28px;
+    font-weight: 100;
+    opacity: 100%;
 }
 
 .close:hover,
