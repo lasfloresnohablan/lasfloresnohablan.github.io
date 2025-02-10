@@ -873,6 +873,7 @@ text-decoration: none;
     display: inline-block;
     padding: 10px;
     line-height: 30px;
+    cursor: pointer;
 }
 /* The Modal (background) */
 .modal {
