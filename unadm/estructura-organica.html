@@ -459,6 +459,13 @@
     </script>
     <script src="js/unadm_scripts.js"></script>
     <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+     <script>
+    // Get the title content from the <title> tag
+    var pageTitle = document.title;
+
+    // Set the text of the <h5> element with the title content
+    document.getElementById("dynamic-title").textContent = pageTitle;
+    </script>
 </body>
 
 </html>
