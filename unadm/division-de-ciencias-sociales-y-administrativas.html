@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Modelo Curricular</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- gráfica base
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://kit.fontawesome.com/4ea6763c6b.js" crossorigin="anonymous"></script>
+    <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCMW94JBHC"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-XCMW94JBHC');
+    </script>
+</head>
+
+<body>
+    <div id="header" style="position: absolute;
+         top: 55px;"></div>
+    <main>
+        <!-- Primary Page Layout
+            –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <section class="section_01" style="margin-top:150px;">
+            <div class="container">
+                <br>
+                <nav id="breadcrumbs"></nav>
+                <h5 id="dynamic-title"></h5>
+                <!-- historia mision-valor
+                  –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                <br>
+                <div class="programs_grid-container">
+  <div class="programs_grid-item">
+        <img src="img/turismo.png" alt="Comunicación Visual">
+        <div class="programs_overlay">
+            <div class="programs_title">Licenciatura en Mercadotecnia internacional</div>
+            <div class="programs_info">RVOE SEP Federal No. 20221332 (12 de octubre de 2022)</div>
+            <a href="#" class="programs_button">Ver programa</a>
+        </div>
+    </div>
+    <div class="programs_grid-item">
+        <img src="img/turismo.png" alt="Comunicación Visual">
+        <div class="programs_overlay">
+            <div class="programs_title">Licenciatura en Mercadotecnia internacional</div>
+            <div class="programs_info">RVOE SEP Federal No. 20221332 (12 de octubre de 2022)</div>
+            <a href="#" class="programs_button">Ver programa</a>
+        </div>
+    </div>
+    <div class="programs_grid-item">
+        <img src="img/turismo.png" alt="Comunicación Visual">
+        <div class="programs_overlay">
+            <div class="programs_title">Licenciatura en Mercadotecnia internacional</div>
+            <div class="programs_info">RVOE SEP Federal No. 20221332 (12 de octubre de 2022)</div>
+           <a href="#" id="btn1">Ver semblanza <img src="img/arrow--up-right.svg" alt="Arrow" class="unadm_arrow_up"></a>
+        </div>
+    </div>
+</div>
+            </div>
+        </section>
+
+
+        <style>
+     
+       
+
+        .programs_grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+        }
+
+        .programs_grid-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .programs_grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .programs_overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
+        }
+
+        .programs_title {
+           font-size: 20px;
+    font-weight: bold;
+    background: black;
+    padding: 5px;
+    display: inline-block;
+    color: white;
+        }
+
+        .programs_info {
+            font-size: 12px;
+        }
+
+        .programs_button {
+            background: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+        <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            var acc = document.getElementsByClassName("accordion");
+
+            for (let i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    let isActive = this.classList.contains("active");
+
+                    // Cierra todos los paneles
+                    for (let j = 0; j < acc.length; j++) {
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.maxHeight = null;
+                    }
+
+                    // Si el panel no estaba activo, lo abre
+                    if (!isActive) {
+                        this.classList.add("active");
+                        this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + "px";
+                    }
+                });
+            }
+        });
+        </script>
+        <script type="text/javascript">
+        // breadcrumbs
+        document.addEventListener("DOMContentLoaded", function() {
+            const breadcrumbsContainer = document.getElementById("breadcrumbs");
+            if (!breadcrumbsContainer) return; // Prevent errors if the element is missing
+
+            const pathArray = window.location.pathname.split("/").filter(p => p);
+
+            let breadcrumbHTML = `<a href="/">Inicio</a>`;
+            let path = "";
+
+            pathArray.forEach((segment, index) => {
+                let originalSegment = segment.replace(".html", ""); // Remove .html extension
+                let capitalizedSegment = originalSegment.charAt(0).toUpperCase() + originalSegment.slice(1); // Capitalized text
+                path += `/${originalSegment.toLowerCase()}`; // Ensure link remains lowercase
+
+                const isLast = index === pathArray.length - 1;
+                breadcrumbHTML += ` / ${isLast ? `<span>${capitalizedSegment}</span>` : `<a href="${path}">${capitalizedSegment}</a>`}`;
+            });
+
+            breadcrumbsContainer.innerHTML = breadcrumbHTML;
+        });
+        </script>
+        <script>
+            // Get the title content from the <title> tag
+    var pageTitle = document.title;
+
+    // Set the text of the <h5> element with the title content
+    document.getElementById("dynamic-title").textContent = pageTitle;
+    </script>
+        <!-- End Document
+            –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <div id="unadm-pre-footer"></div>
+        <style type="text/css">
+        .wrap-word {
+            overflow-wrap: break-word;
+        }
+        </style>
+    </main>
+    <script src="js/unadm_scripts.js"></script>
+    <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+</body>
+
+</html>
