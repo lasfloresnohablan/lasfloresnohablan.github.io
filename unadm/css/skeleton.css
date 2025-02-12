@@ -929,13 +929,13 @@ color: #2e2e2e;
        .programs_grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 10px;
+            gap: 0px;
         }
 
         .programs_grid-item {
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 0px;
         }
 
         .programs_grid-item img {
@@ -968,6 +968,10 @@ color: #2e2e2e;
 
         .programs_info {
             font-size: 12px;
+    bottom: 0px;
+    color: white;
+    bottom: 70px;
+    position: absolute;
         }
 
         .programs_button {
