@@ -1,1 +1,353 @@
-g
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>UnADM Pódcast | Streaming de Conocimiento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <style>
+        /* Estilo "Mubi" (Minimalismo Cinematográfico) */
+    body {
+        background-color: #0a0a0a;
+        color: #f5f5f5;
+        font-family: 'Noto Sans', sans-serif;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+
+
+    .noto-sans-<uniquifier> {
+        font-family: "Noto Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
+        font-variation-settings:
+            "wdth"100;
+    }
+
+
+    h1,
+    h2,
+    h3,
+    .brand {
+        font-family: 'Noto Sans', serif;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        color: #ccc;
+    }
+
+    /* Hero Section */
+    .hero {
+        height: 80vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), #0a0a0a),
+            url('img/header.gif');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 50px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    /* Featured Videos (Streaming Style) */
+    .featured-grid {
+        position: relative;
+        z-index: 10;
+    }
+
+    .video-card {
+        background: #1a1a1a;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+        transform: scale(1.05);
+    }
+
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Catalog Section */
+    .section-title {
+        border-bottom: 1px solid #333;
+        padding-bottom: 10px;
+        margin-bottom: 40px;
+        font-size: 18px;
+        opacity: 0.7;
+    }
+
+    .podcast-poster {
+        background: #121212;
+        border: 1px solid #222;
+        padding: 30px 20px;
+        text-align: left;
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .podcast-poster h5 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .podcast-poster p {
+        font-size: 14px;
+        color: #888;
+        font-weight: 300;
+    }
+
+    .video_description{
+          font-size: 14px;
+    color: #8b8b8b;
+    }
+    .video_title{    margin: 0;
+    font-weight: bold;
+    font-size: 20px;}
+
+    /* Footer */
+    footer {
+        padding: 80px 0;
+        border-top: 1px solid #222;
+        color: #555;
+        font-size: 14px;
+    }
+
+    .pod_badge {
+        display: inline-block;
+        border: 1px solid #f9ff29;
+        padding: 2px 8px;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+
+
+.cds--btn--primary {
+     display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 6rem;
+    width: auto;
+    max-width: 30rem;
+    padding: 10px 30px;
+    /* font-family: 'IBM Plex Sans', sans-serif; */
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.28572;
+    letter-spacing: 0.16px;
+    text-decoration: none;
+    vertical-align: top;
+    border-radius: 0;
+    background-color: #0f62fe;
+    color: #ffffff;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 70ms cubic-bezier(0, 0, 0.38, 0.9), box-shadow 70ms cubic-bezier(0, 0, 0.38, 0.9);
+
+}
+
+/* Hover State */
+.cds--btn--primary:hover {
+  background-color: #054ada; /* $hover-primary / Blue 70 */
+}
+
+/* Active (Click) State */
+.cds--btn--primary:active {
+  background-color: #002d9c; /* $active-primary / Blue 80 */
+}
+
+/* Focus State (Accessibility) */
+.cds--btn--primary:focus {
+  outline: none;
+  /* Carbon uses a 2-ring focus style: 1px white inset + 2px blue outer */
+  box-shadow: inset 0 0 0 1px #ffffff, 0 0 0 3px #0f62fe;
+}
+
+/* Disabled State */
+.cds--btn--primary:disabled {
+  background-color: #c6c6c6;
+  color: #8d8d8d;
+  cursor: not-allowed;
+  outline: none;
+}
+
+
+.play_button{    color: white;
+    width: 20px;
+    padding-left: 10px;}
+    </style>
+</head>
+
+<body>
+    <header style="position: fixed; width: 100%; border-bottom: 1px solid #afafaf; background-color: #e8e8e8; z-index: 999999999999999999999;">
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <img src="img/logo.svg" width="350px">
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container">
+            <div class="row hero-content">
+                <div class="eight columns">
+                    <div class="pod_badge">Novedad</div>
+                    <h1>Voces Abiertas y a Distancia</h1>
+                    <p>Explora la segunda temporada de nuestra serie insignia. La educación a distancia cerca de ti.</p>
+                    <button class="cds--btn cds--btn--primary" type="button">
+                        Reproducir<img src="img/play-solid.svg" class="play_button">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container featured-grid">
+        <div class="row section-title"><b>DESTACADOS</b> Temporada 2 / Temporada 1</div>
+        <div class="row">
+            <div class="six columns">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/Aot-V7c0RyQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div style="padding: 15px;">
+                        <p class="video_title">Episodio 1: Ricardo Villanueva Lomelí</p>
+                        <p class="video_description">Educación para la vida</p>
+                    </div>
+                </div>
+            </div>
+            <div class="six columns">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/0r8QTYEvg_w" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div style="padding: 15px;">
+                        <p class="video_title">Episodio 2: Anabel de la Rosa Gómez</p>
+                        <p class="video_description">El modelo educativo del SUAyED-UNAM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container" style="margin-top: 60px;">
+        <div class="row section-title"><b>NUESTRAS SERIES</b> Originales UnADM</div>
+        <div class="row">
+            <div class="three columns">
+                <div class="podcast-poster">
+                    <img src="https://www.unadmexico.mx/podcast/img/eva_3.png"><br />
+                    <h5>En Voz Alta</h5>
+                    <p>Perspectiva de género, prevención de violencias y cultura de paz.</p>
+                </div>
+            </div>
+            <div class="three columns">
+                <div class="podcast-poster">
+                    <img src="https://www.unadmexico.mx/podcast/img/v_3.png"><br />
+                    <h5>Virtualia</h5>
+                    <p>Fake news, ciudadanía digital y el futuro de la web.</p>
+                </div>
+            </div>
+            <div class="three columns">
+                <div class="podcast-poster">
+                    <img src="https://www.unadmexico.mx/podcast/img/vs_3.png"><br />
+                    <h5>Verde Será</h5>
+                    <p>Medio ambiente, sustentabilidad y el cuidado de nuestro planeta.</p>
+                </div>
+            </div>
+            <div class="three columns">
+                <div class="podcast-poster">
+                    <img src="https://www.unadmexico.mx/podcast/img/eqqtqle_3.png"><br />
+                    <h5>El que tiene Tienda que la Emprenda</h5>
+                    <p>Economía social, cooperativismo y emprendimiento solidario.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    <h6>COLABORACIÓN</h6>
+                    <p>UnADM & Grupo IMER<br>Instituto Mexicano de la Radio</p>
+                      <h6>CRÉDITOS</h6>
+                    <p>Aleida Calleja y Luisa Iglesias (Conducción)<br>Adriana Báez y Martha Aguilar (Guión)
+                   
+                        Aleida Calleja y Luisa Iglesias (Conducción)<br>
+                        Jesús González (Producción)<br>
+                        Alicia Rodríguez (Asistencia de Producción)<br>
+                        Maricruz Zamora (Coordinación, Grupo IMER)<br>
+                        Omar Rojas García (Conducción)<br>
+                      José Vázquez Durán (Conducción)<br>
+                        Angélica Soriano (Conducción)<br></p>
+                </div>
+                <div class="four columns">
+                  <p>
+                      
+                        Deisy del Carmen Tolentino Dolores (Conducción)<br>
+                        Misheyla Eugenia Ruiz Ramírez (Conducción)<br>
+                        Alejandro Joseph Esteinou (Coordinación, Grupo IMER)<br>
+                        Angélica García Andrade (Coordinación, UnADM)<br>
+                        Hellen Georgina Castañeda Villegas (Colaboración, UnADM)
+                        Iván Marín Rodríguez (Coordinador de Extensión, Vinculación y Desarrollo Social)<br>
+                         María Carmen Alonso Nuñez (Dirección de División de Ciencias Sociales y Administrativas)<br>
+                    </p>
+                </div>
+                <div class="four columns">
+                    <p>
+                       
+                          María de los Ángeles Serrano Islas (Dirección de División de Ciencias de la Salud, Biológicas y Ambientales)<br>
+                        Dolores Alejandra Vásquez Carbajal (Dirección de División de Ciencias Exactas, Ingeniería y Tecnología, Universidad Abierta y a Distancia de México)<br>
+                      
+                        Sóstenes Oscar García Altagracia (Prestador de Servicios Profesionales, Universidad Abierta y a Distancia de México)<br>
+                        Adriana Sánchez (Prestadora de Servicios Profesionales, Universidad Abierta y a Distancia de México)<br>
+                        Mtra. Isis Citlalli Gómez López (Supervisión)<br>
+                        Lic. Ernesto Zavala Hernández (Elaboración y Revisión)
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <h6>LEGAL</h6>
+                <p class=""> © 2026, Universidad Abierta y a Distancia de México; Secretaría de Educación Pública Producción realizada bajo colaboración remunerada por el Instituto Mexicano de la Radio. Queda prohibido cualquier uso, reproducción, comunicación pública, puesta a disposición, transmisión, modificación, transformación, derivación o cualquier otra forma de explotación, parcial o total, así como de cada uno de los elementos y/o contenidos que la integran; por cualquier medio, método o en cualquier soporte; sin previa autorización por escrito de la Universidad Abierta y a Distancia de México o, en su caso, de titular de los derechos respectivos.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+</body>
+
+</html>
