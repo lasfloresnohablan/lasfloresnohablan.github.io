@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoria activa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <style>
+        :root { --primary: #F88379; --dark: #222; --light: #f4f7f6; }
+        body { background-color: var(--light); padding-top: 30px; text-align: center; font-family: 'Raleway', sans-serif; }
+        .main-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        
+        /* Grid Dinámico para Memoria */
+        #gameBoard { display: grid; gap: 10px; margin: 20px auto; max-width: 500px; justify-content: center; }
+        .card { height: 80px; width: 80px; background: var(--primary); border-radius: 8px; cursor: pointer; display: flex; 
+                align-items: center; justify-content: center; font-size: 1.5rem; color: transparent; transition: 0.3s; }
+        .card.flipped { background: white; color: var(--dark); border: 2px solid var(--primary); transform: rotateY(180deg); }
+        .card.matched { background: #e1e1e1; color: #aaa; cursor: default; border: 2px solid #ddd; }
+
+        /* Estilos para Secuencia */
+        .sequence-btn { height: 100px; width: 100%; border: none; border-radius: 8px; opacity: 0.6; transition: 0.2s; }
+        .sequence-btn:active, .sequence-btn.active { opacity: 1; transform: scale(0.95); box-shadow: 0 0 20px white; }
+        
+        /* Pantallas */
+        .screen { display: none; }
+        .screen.active { display: block; }
+        
+        .stat-badge { background: #eee; padding: 5px 15px; border-radius: 20px; font-weight: bold; margin: 0 5px; }
+        input[type="number"] { font-size: 2rem; height: 60px; text-align: center; }
+/* 1. The Standard State */
+.button.button-primary, 
+button.button-primary, 
+input[type=button].button-primary, 
+input[type=reset].button-primary, 
+input[type=submit].button-primary {
+    color: #FFF;
+    background-color: #F88379!important;
+    border-color: #F88379!important;
+    transition: background-color 0.2s ease; /* Adds a smooth color fade */
+}
+
+/* 2. The Interaction States (Hover, Focus, Active) */
+.button.button-primary:hover,
+.button.button-primary:focus,
+.button.button-primary:active {
+    background-color: #cb6056!important;
+    border-color: #cb6056!important;
+    color: #FFF;
+    outline: none; 
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="twelve columns">
+            <h2 style="margin-bottom: 5px;">🧠 Memoria Activa</h2>
+            <p id="gameSubtitle">Entrena tu cerebro cada día</p>
+        </div>
+    </div>
+
+    <div id="menuScreen" class="screen active main-card">
+        <h4>Selecciona un Desafío</h4>
+        <div class="row">
+            <div class="four columns"><button class="button-primary u-full-width" onclick="initGame('memory')">Memoria</button></div>
+            <div class="four columns"><button class="button-primary u-full-width" onclick="initGame('sequence')">Secuencia</button></div>
+            <div class="four columns"><button class="button-primary u-full-width" onclick="initGame('math')">Cálculo</button></div>
+        </div>
+        <hr>
+        <label>Nivel de Dificultad (1-5)</label>
+        <input type="range" id="levelRange" min="1" max="5" value="1" oninput="updateLevelLabel(this.value)">
+        <p>Nivel: <span id="levelVal">1</span></p>
+    </div>
+
+    <div id="gameScreen" class="screen main-card">
+        <div class="row" style="margin-bottom: 20px;">
+            <span class="stat-badge">Nivel: <span id="currentLvl">1</span></span>
+            <span class="stat-badge">Puntos: <span id="score">0</span></span>
+            <button class="button" style="float: right;" onclick="showMenu()">Volver</button>
+        </div>
+        
+        <div id="gameContainer">
+            </div>
+    </div>
+</div>
+
+
+
+<script>
+let currentLevel = 1;
+let score = 0;
+let gameState = {};
+
+function updateLevelLabel(val) {
+    currentLevel = parseInt(val);
+    document.getElementById('levelVal').innerText = val;
+}
+
+function showMenu() {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('menuScreen').classList.add('active');
+}
+
+function initGame(type) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('gameScreen').classList.add('active');
+    document.getElementById('currentLvl').innerText = currentLevel;
+    const container = document.getElementById('gameContainer');
+    container.innerHTML = '';
+    score = 0;
+    document.getElementById('score').innerText = score;
+
+    if (type === 'memory') startMemoryGame(container);
+    if (type === 'sequence') startSequenceGame(container);
+    if (type === 'math') startMathGame(container);
+}
+
+// --- JUEGO 1: MEMORIA (CARDS) ---
+function startMemoryGame(container) {
+    const pairsCount = [2, 4, 6, 8, 10][currentLevel - 1];
+    const emojis = ['🚀','💎','🔥','⭐','🌈','🍀','🍎','💡','🎯','👻'].slice(0, pairsCount);
+    let cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+    
+    const board = document.createElement('div');
+    board.id = 'gameBoard';
+    // Ajuste de grid según nivel
+    board.style.gridTemplateColumns = currentLevel < 3 ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)';
+    
+    let flipped = [];
+    cards.forEach(emoji => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.dataset.val = emoji;
+        div.onclick = function() {
+            if (flipped.length < 2 && !this.classList.contains('flipped')) {
+                this.classList.add('flipped');
+                this.innerText = emoji;
+                flipped.push(this);
+                if (flipped.length === 2) {
+                    if (flipped[0].dataset.val === flipped[1].dataset.val) {
+                        flipped.forEach(c => c.classList.add('matched'));
+                        flipped = [];
+                        score += 10;
+                        document.getElementById('score').innerText = score;
+                    } else {
+                        setTimeout(() => {
+                            flipped.forEach(c => { c.classList.remove('flipped'); c.innerText = ''; });
+                            flipped = [];
+                        }, 800);
+                    }
+                }
+            }
+        };
+        board.appendChild(div);
+    });
+    container.appendChild(board);
+}
+
+// --- JUEGO 2: SECUENCIA (SIMON) ---
+function startSequenceGame(container) {
+    container.innerHTML = `<h5>Repite la secuencia</h5>
+        <div class="row">
+            <div class="six columns"><button id="s0" class="sequence-btn" style="background:#FF5252" onclick="userPush(0)"></button></div>
+            <div class="six columns"><button id="s1" class="sequence-btn" style="background:#448AFF" onclick="userPush(1)"></button></div>
+        </div><br>
+        <div class="row">
+            <div class="six columns"><button id="s2" class="sequence-btn" style="background:#4CAF50" onclick="userPush(2)"></button></div>
+            <div class="six columns"><button id="s3" class="sequence-btn" style="background:#FFC107" onclick="userPush(3)"></button></div>
+        </div>`;
+    
+    gameState = { sequence: [], userIdx: 0, length: currentLevel + 2 };
+    nextStepSequence();
+}
+
+function nextStepSequence() {
+    gameState.sequence.push(Math.floor(Math.random() * 4));
+    playSequence();
+}
+
+async function playSequence() {
+    for (let s of gameState.sequence) {
+        await new Promise(r => setTimeout(r, 600));
+        const btn = document.getElementById('s' + s);
+        btn.classList.add('active');
+        setTimeout(() => btn.classList.remove('active'), 300);
+    }
+    gameState.userIdx = 0;
+}
+
+function userPush(id) {
+    if (id === gameState.sequence[gameState.userIdx]) {
+        gameState.userIdx++;
+        if (gameState.userIdx === gameState.sequence.length) {
+            score += 20;
+            document.getElementById('score').innerText = score;
+            if (gameState.sequence.length < gameState.length + 3) {
+                setTimeout(nextStepSequence, 1000);
+            } else {
+                alert("¡Nivel Superado!");
+                showMenu();
+            }
+        }
+    } else {
+        alert("¡Error! Secuencia fallida.");
+        showMenu();
+    }
+}
+
+// --- JUEGO 3: CÁLCULO MENTAL ---
+function startMathGame(container) {
+    const num1 = Math.floor(Math.random() * (10 * currentLevel));
+    const num2 = Math.floor(Math.random() * (10 * currentLevel));
+    const ans = num1 + num2;
+    
+    container.innerHTML = `
+        <h4>¿Cuánto es?</h4>
+        <h1 style="font-size: 4rem;">${num1} + ${num2}</h1>
+        <input type="number" id="mathAns" placeholder="?">
+        <button class="button-primary u-full-width" onclick="checkMath(${ans})">Verificar</button>
+    `;
+    document.getElementById('mathAns').focus();
+}
+
+function checkMath(correct) {
+    const user = parseInt(document.getElementById('mathAns').value);
+    if (user === correct) {
+        score += 15;
+        document.getElementById('score').innerText = score;
+        startMathGame(document.getElementById('gameContainer'));
+    } else {
+        alert("Incorrecto. La respuesta era " + correct);
+        showMenu();
+    }
+}
+</script>
+</body>
+</html>
