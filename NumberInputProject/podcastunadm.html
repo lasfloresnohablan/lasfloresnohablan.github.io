@@ -1,1029 +1,292 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>UnADM Pódcast | Streaming de Conocimiento</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="language" content="spanish">
+    <meta name="author" content="Universidad Abierta y a Distancia de México">
+    <meta name="description" content="Podcast UnADM, Género. Cultura digital, Podcast UnADM, UnADM Podcast, Virtualia, En Voz Alta, Universidad Abierta y a Distancia de México Podcast">
+    <meta name="keywords" content="Podcast UnADM, Género. Cultura digital, Podcast UnADM, UnADM Podcast, Virtualia, En Voz Alta, Universidad Abierta y a Distancia de México Podcast">
+    <meta name="robots" content="index, all, follow">
+    <meta name="googlebot" content="index, all, follow">
+    <link rel="icon" href="img/unadm.ico">
+    <title>Podcast UnADM</title>
     <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
-    <style>
-        /* Estilo "Mubi" (Minimalismo Cinematográfico) */
-        body {
-            background-color: #0a0a0a;
-            color: #f5f5f5;
-            font-family: 'Noto Sans', sans-serif;
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, .brand {
-            font-family: 'Noto Sans', serif;
-            letter-spacing: -3px;
-        }
-
-        a {
-            color: #fff;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        a:hover {
-            color: #ccc;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), #0a0a0a),
-                url('img/header.gif');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
-            padding-bottom: 50px;
-        }
-
-        .hero-content {
-            width: 100%;
-        }
-
-        /* Featured Videos (Streaming Style) */
-        .featured-grid {
-            position: relative;
-            z-index: 10;
-        }
-
-        .video-card {
-            background: #1a1a1a;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .video-card:hover {
-            transform: scale(1.05);
-        }
-
-        /* Catalog Section */
-        .section-title {
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 40px;
-            font-size: 18px;
-            opacity: 0.7;
-        }
-
-        .podcast-poster {
-            background: #121212;
-            border: 1px solid #222;
-            padding: 30px 20px;
-            text-align: left;
-            min-height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .podcast-poster h5 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .podcast-poster p {
-            font-size: 14px;
-            color: #888;
-            font-weight: 300;
-        }
-
-        /* Footer */
-        footer {
-            padding: 80px 0;
-            border-top: 1px solid #222;
-            color: #555;
-            font-size: 14px;
-        }
-
-        .pod_badge {
-            display: inline-block;
-            border: 1px solid #f9ff29;
-            padding: 2px 8px;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .cds--btn--primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: space-between;
-            min-height: 6rem;
-            width: auto;
-            max-width: 30rem;
-            padding: 10px 30px;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 1.28572;
-            letter-spacing: 0.16px;
-            text-decoration: none;
-            vertical-align: top;
-            border-radius: 0;
-            background-color: #0f62fe;
-            color: #ffffff;
-            border: 1px solid transparent;
-            cursor: pointer;
-            transition: background-color 70ms cubic-bezier(0, 0, 0.38, 0.9), box-shadow 70ms cubic-bezier(0, 0, 0.38, 0.9);
-        }
-
-        .cds--btn--primary:hover {
-            background-color: #054ada;
-        }
-
-        .play_button {
-            color: white;
-            width: 20px;
-            padding-left: 10px;
-        }
-
-        .tabs {
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .tab {
-            opacity: 0.5;
-            cursor: pointer;
-        }
-
-        .tab.active {
-            opacity: 1;
-            font-weight: bold;
-        }
-
-        .temporada {
-            display: none;
-        }
-
-        .temporada.active {
-            display: flex;
-        }
-
-        /* MODAL STYLES */
-        .pod {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85); /* Darker background for better focus */
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2147483647;
-        }
-
-        .pod.active {
-            display: flex;
-        }
-
-        .pod-content {
-            background: black;
-            padding: 0;
-            width: 90%;
-            max-width: 1000px;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        .pod .close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: none;
-            border: none;
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-            z-index: 20;
-        }
-
-        /* SLIDER STYLES */
-        .slider-section {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-        }
-
-        .slider-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .slider-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            gap: 15px;
-            padding: 10px 0;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            width: 100%;
-        }
-
-        .slider-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .movie-card {
-        
-    min-width: 250px;
-    width: 250px; /* Or whatever exact size you prefer, like 280px */
-    flex: 0 0 250px; /* This tells Flexbox: absolutely do not shrink or grow this item */
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    position: relative;
-}
-        
-
-        .movie-card:hover {
-            transform: scale(1.03);
-            z-index: 5;
-        }
-
-        .movie-card img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            display: block;
-            border-radius: 2px;
-        }
-
-        .card-title {
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 0;
-            text-align: left;
-        }
-
-        .card-title .subtitle {
-            font-weight: 300;
-            display: block;
-            font-size: 14px;
-        }
-
-        /* CONTROLS */
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white !important;
-            border: none;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .slider-arrow:hover {
-            background: #0f62fe;
-        }
-
-        .arrow-left {
-            left: -20px;
-        }
-
-        .arrow-right {
-            right: -20px;
-        }
-
-        .slider-bullets {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .bullet {
-            width: 8px;
-            height: 8px;
-            background: #444;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .bullet.active {
-            background: #0f62fe;
-            width: 20px;
-            border-radius: 4px;
-        }
-
-        .pod_bubble{
-       border-radius: 30px;
-    padding: 5px 10px;
-    width: fit-content;
-    font-size: 14px;
-    color: black;
-    font-weight: 400;
-
-}
-    </style>
+    <link rel="stylesheet" href="css/estilos4.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.0/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/boxicons@2.1.0/dist/boxicons.js"></script>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-34XX2QV343"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-34XX2QV343');
+</script>
 
 <body>
-    <header style="position: fixed; width: 100%; border-bottom: 1px solid #afafaf; background-color: #e8e8e8; z-index: 9999;">
-        <div class="container">
-            <div class="row">
-                <div class="twelve columns">
-                    <img src="img/logo.svg" width="350px">
-                </div>
-            </div>
-        </div>
+    <header class="top_pod">
+        <a href="../../"><img src="img/logo.svg" alt="" height="80px;"></a>
     </header>
-    <section class="hero">
-        <div class="container">
-            <div class="row hero-content">
-                <div class="eight columns">
-                    <div class="pod_badge">Novedad</div>
-                    <h1>Voces Abiertas y a Distancia UnADM</h1>
-                    <p>Explora la segunda temporada de nuestra serie insignia. La educación a distancia cerca de ti.</p>
-                    <button class="cds--btn cds--btn--primary" type="button" id="openModalHero">
-                        Reproducir<img src="img/play-solid.svg" class="play_button">
-                    </button>
-                </div>
-            </div>
-        </div>
+    <div class="top_pod-2">
+        <!-- Hamburger Button -->
+        <button class="pod_menu-toggle" id="pod_menuToggle" aria-label="Abrir menú">
+            ☰
+        </button>
+        <!-- Navigation -->
+        <nav class="pod_menu pod_ocultar" id="pod_menu">
+            <div class="pod_mitem"><a href="./" title="Inicio">Inicio</a></div>
+            <div class="pod_mitem"><a href="en_voz_alta.html" title="En voz alta">En Voz Alta</a></div>
+            <div class="pod_mitem"><a href="virtualia.html" title="Virtualia">Virtualia</a></div>
+            <div class="pod_mitem"><a href="el_que_quiera_tienda_que_la_emprenda.html" title="En voz alta">El que quiera tienda que la emprenda</a></div>
+            <div class="pod_mitem"><a href="verde_sera.html" title="Virtualia">Verde será</a></div>
+            <div class="pod_mitem"><a href="index.html#sec05" title="Créditos">Créditos</a></div>
+        </nav>
+    </div>
+    <section class="seccion__carrusel" id="sec01" style="margin-top: 120px;">
+        <img src="img/main_banner.png" class="responsive-img img-responisve" alt="Banner Pódcast UnADM" title="Banner Pódcast UnADM">
     </section>
-    <!--Videopodcast____________________________________________________________________________________________-->
-    <section class="container featured-grid">
-        <div class="row section-title"><b>DESTACADOS</b> </div>
-        <p class="tabs">
-            <span class="tab active" data-target="temporada_2">Temporada 1</span> /
-            <span class="tab" data-target="temporada_1">Temporada 2</span>
+    <section class="seccion__02" id="sec02">
+        <h1 class="centrar">Pódcast UnADM</h1>
+        <p class="centrar">Descubre todos los pódcast que la UnADM, en colaboración remunerada con Grupo IMER, ha creado para ti.
+            Sigue de cerca la variedad de programas que hemos preparado para ti: En voz alta, Virtualia, Verde será y El que quiera tienda que la emprenda.
+            Únete a nuestra comunidad de oyentes y encuéntra los pódcast disponibles en este sitio.
+            <div class="cards-list">
+                <a class="cajita 1" href="en_voz_alta.html">
+                    <div class="card_image"> <img src="img/eva_4.png" />
+                    </div>
+                </a>
+                <a class="cajita 4" href="virtualia.html">
+                    <div class="card_image">
+                        <img src="img/v_4.png" />
+                    </div>
+                </a>
+                <a class="cajita 3" href="verde_sera.html">
+                    <div class="card_image">
+                        <img src="img/vs_4.png" />
+                    </div>
+                </a>
+                <a class="cajita 4" href="el_que_quiera_tienda_que_la_emprenda.html">
+                    <div class="card_image">
+                        <img src="img/eqqtqle_4.png" />
+                    </div>
+                </a>
+            </div>
+    </section>
+    <section class="seccion__01" id="sec05">
+        <h1 class="centrar">Créditos</h1>
+        <div class="centrar">
+            <p><b>Aleida Calleja y Luisa Iglesias</b> </p>
+            <p>Conducción</p>
+            <p><b> Adriana Báez y Martha Aguilar</b></p>
+            <p>Investigación y guion</p>
+            <p><b>Jesús González</b></p>
+            <p>Producción</p>
+            <p><b>Alicia Rodríguez</b></p>
+            <p>Asistencia de producción</p>
+            <p><b>Maricruz Zamora – Grupo IMER</b></p>
+            <p>Coordinación</p>
+            <p>Omar Rojas García
+                conducción
+                <p><b>José Vázquez Durán </b> </p>
+                <p>Conducción</p>
+                <p><b>Angélica Soriano </b> </p>
+                <p>Conducción</p>
+                <p><b>Deisy del Carmen Tolentino Dolores</b> </p>
+                <p>Conducción</p>
+                <p><b>Misheyla Eugenia Ruiz Ramírez </b> </p>
+                <p>Conducción</p>
+                <p><b>Alejandro Joseph Esteinou </b> </p>
+                <p>Coordinación Grupo IMER</p>
+                <p><b>Angélica García Andrade </b> </p>
+                <p>Coordinación UnADM</p>
+                <p><b>Hellen Georgina Castañeda Villegas </b> </p>
+                <p>colaboración UnADM</p>
+                <hr>
+                <p><b>Iván Marín Rodríguez</b> </p>
+                <p>Coordinador de Extensión, Vinculación y Desarrollo Social</p>
+                <p><b>María Carmen Alonso Nuñez</b></p>
+                <p>Dirección de División de Ciencias Sociales y Administrativas</p>
+                <p><b>María de los Ángeles Serrano Islas</b></p>
+                <p>Dirección de División de Ciencias de la Salud, Biológicas y Ambientales</p>
+                <p><b>Dolores Alejandra Vásquez Carbajal</b></p>
+                <p>Dirección de División de Ciencias Exactas Ingeniería y Tecnología</p>
+                <p>Directora de la División de Ciencias Exactas Ingeniería y Tecnología de la Universidad Abierta y a Distancia de México</p>
+                <p><b>Sóstenes Oscar García Altagracia</b> </p>
+                <p>Prestador de Servicios profesionales en la Universidad Abierta y a Distancia de México</p>
+                <p><b>Adriana Sánchez </b></p>
+                <p>Prestador de Servicios profesionales en la Universidad Abierta y a Distancia de México</p>
+                <p><b>Mtra. Isis Citlalli Gómez López</b></p>
+                <p>Supervisión</p>
+                <p><b>Lic. Ernesto Zavala Hernández</b></p>
+                <p>Elaboración y Revisión</p>
+                <hr>
+                <p><b>Luis Alejandro Rivas Villarruel</b></p>
+                <p>Diseño web</p>
+        </div>
+        <hr>
+        <h3>Síguenos en nuestras redes sociales</h3>
+        <ul class="social_icons">
+            <li class="menuSecCol"><a href="https://www.facebook.com/UNADM.Oficial" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f fa-xl icons"></i></a>
+            </li>
+            <li class="menuSecCol"><a href="https://twitter.com/UnADM_Mx" target="_blank" rel="noopener" title="Twitter"><i class="fa-brands fa-x-twitter fa-xl icons"></i></a></li>
+            <li class="menuSecCol"><a href="https://www.youtube.com/channel/UC5Oms5ZMLVkZx8xwx191qfg" target="_blank" rel="noopener" title="YouTube">
+                    <i class="fa-brands fa-youtube fa-xl icons"></i></a>
+            </li>
+            <li class="menuSecCol"><a href="https://www.instagram.com/momentosunadm" target="_blank" rel="noopener" title="Instagram"><i class="fa-brands fa-instagram fa-xl icons"></i></a></li>
+        </ul>
+        <hr>
+        <p style="font-size: 10px;">D.R. (P) 2022, Universidad Abierta y a Distancia de México; Secretaría de Educación Pública
+            Producción realizada bajo colaboración remunerada por el Instituto Mexicano de la Radio.
+            Queda prohibido cualquier uso, reproducción, comunicación pública, puesta a disposición, transmisión, modificación, transformación, derivación o cualquier otra forma de explotación, parcial o total, así como de cada uno de los elementos y/o contenidos que la integran; por cualquier medio, método o en cualquier soporte; sin previa autorización por escrito de la Universidad Abierta y a Distancia de México o, en su caso, de titular de los derechos respectivos.
         </p>
-        <div class="row temporada temporada_2 active">
-            <br><br>
-            <div class="slider-section">
-                <div class="slider-wrapper">
-                    <button class="slider-arrow arrow-left" id="prevBtn">&#10094;</button>
-                    <div class="slider-container" id="slider">
-                        <div class="movie-card" data-video="KhJH5ZSk3oA">
-                            <img src="https://img.youtube.com/vi/KhJH5ZSk3oA/sddefault.jpg" alt="Movie">
-                            <p class="card-title">Episodio 01 <br>
-                                <span class="subtitle">Educación sin fronteras</span></p>
-                        </div>
-                        <div class="movie-card" data-video="JD44blb7zFA">
-                            <img src="https://img.youtube.com/vi/JD44blb7zFA/sddefault.jpg" alt="Movie">
-                            <p class="card-title">Episodio 02 <br>
-                                <span class="subtitle">Aprender para la vida</span></p>
-                        </div>
-                        <div class="movie-card" data-video="TiIoUv37x4U">
-                            <img src="https://img.youtube.com/vi/TiIoUv37x4U/sddefault.jpg" alt="Movie">
-                            <p class="card-title">Episodio 03 <br>
-                                <span class="subtitle">Estructura y normatividad</span></p>
-                        </div>
-                        <div class="movie-card" data-video="G6xYgkpg2yk">
-                            <img src="https://img.youtube.com/vi/G6xYgkpg2yk/sddefault.jpg" alt="Movie">
-                            <p class="card-title">Episodio 04 <br>
-                                <span class="subtitle">Planificación institucional</span></p>
-                        </div>
-                        <div class="movie-card" data-video="8NlnkGftiCg">
-                            <img src="https://img.youtube.com/vi/8NlnkGftiCg/sddefault.jpg" alt="Movie">
-                            <p class="card-title">Episodio 05 <br>
-                                <span class="subtitle">Educación e Innovación</span></p>
-                        </div>
-                        <div class="movie-card" data-video="8-dq0nlU0v0">
-                            <img src="https://img.youtube.com/vi/8-dq0nlU0v0/sddefault.jpg" alt="Movie">
-                            <p class="card-title">Episodio 06 <br>
-                                <span class="subtitle">Aliados UnADM</span></p>
-                        </div>
-                        <div class="movie-card" data-video="d_yecHYdvzI">
-                            <img src="https://img.youtube.com/vi/d_yecHYdvzI/sddefault.jpg" alt="Movie">
-                            <p class="card-title">Bonus <br>
-                                <span class="subtitle">Primera temporada</span></p>
-                        </div>
-                    </div>
-                    <button class="slider-arrow arrow-right" id="nextBtn">&#10095;</button>
-                </div>
-                <div class="slider-bullets" id="bulletsContainer"></div>
-            </div>
-        </div>
-        <div class="row temporada temporada_1">
-            <br><br>
-            <div class="slider-section">
-                <div class="slider-wrapper">
-                    <button class="slider-arrow arrow-left" id="Aot-V7c0RyQ">&#10094;</button>
-                    <div class="slider-container" id="slider_t1">
-                        <div class="movie-card" data-video="Aot-V7c0RyQ">
-                            <img src="https://img.youtube.com/vi/Aot-V7c0RyQ/sddefault.jpg" alt="T1 Ep 1">
-                            <p class="card-title">Episodio 01 <br>
-                                <span class="subtitle">Ricardo Villanueva Lomelí</span>
-                            </p>
-                        </div>
-                        <div class="movie-card" data-video="0r8QTYEvg_w">
-                            <img src="https://img.youtube.com/vi/0r8QTYEvg_w/sddefault.jpg" alt="T1 Ep 2">
-                            <p class="card-title">Episodio 02 <br>
-                                <span class="subtitle">Anabel de la Rosa Gómez</span>
-                            </p>
-                        </div>
-                        <div class="movie-card" data-video="MeQHSDeIUZo">
-                            <img src="https://img.youtube.com/vi/MeQHSDeIUZo/sddefault.jpg" alt="T1 Ep 3">
-                            <p class="card-title">Episodio 03 <br>
-                                <span class="subtitle">Katya Echazarreta</span>
-                            </p>
-                        </div>
-                    </div>
-                    <button class="slider-arrow arrow-right" id="nextBtn_t1">&#10095;</button>
-                </div>
-                <div class="slider-bullets" id="bulletsContainer_t1"></div>
-            </div>
-        </div>
     </section>
-    <!--Podcasts____________________________________________________________________________________________-->
-    <section class="container" style="margin-top: 60px;">
-        <div class="row section-title">Originales UnADM - IMER</div>
-        <div class="row">
-            <div class="three columns">
-                <a href="en_voz_alta.html">
-                    <div class="podcast-poster">
-                        <img src="https://www.unadmexico.mx/podcast/img/eva_3.png"><br />
-                        <h5>En Voz Alta</h5>
-                        <!--<p>Perspectiva de género, prevención de violencias.</p>-->
-                    </div>
-                </a>
-            </div>
-            <div class="three columns">
-                <a href="virtualia.html">
-                    <div class="podcast-poster">
-                        <img src="https://www.unadmexico.mx/podcast/img/v_3.png"><br />
-                        <h5>Virtualia</h5>
-                        <!--<p>Fake news, ciudadanía digital.</p>-->
-                    </div>
-                </a>
-            </div>
-            <div class="three columns">
-                <a href="verde_sera.html">
-                    <div class="podcast-poster">
-                        <img src="https://www.unadmexico.mx/podcast/img/vs_3.png"><br />
-                        <h5>Verde Será</h5>
-                        <!--<p>Perspectiva de género, prevención de violencias.</p>-->
-                    </div>
-                </a>
-            </div>
-            <div class="three columns">
-                <a href="el_que_quiera_tienda_que_la_emprenda.html">
-                    <div class="podcast-poster">
-                        <img src="https://www.unadmexico.mx/podcast/img/eqqtqle_3.png"><br />
-                        <h5>El que Quiera Tienda que la Emprenda</h5>
-                        <!--<p>Fake news, ciudadanía digital.</p>-->
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-    <!--Tecnología____________________________________________________________________________________________-->
-    <section class="container" style="margin-top: 60px;">
-        <div class="row section-title">Conferencias UnADM</div>
-        <div class="pod_bubble" style="background-color:#9ccae1;">Tecnología</div>
-        <div class="slider-section">
-            <div class="slider-wrapper">
-                <button class="slider-arrow arrow-left" id="prevBtn_t1">&#10094;</button>
-                <div class="slider-container" id="slider_t1">
-                    <div class="movie-card" data-video="ciApH-yFmj8">
-                        <img src="https://img.youtube.com/vi/ciApH-yFmj8/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">
-                            Conferencia. Retos y oportunidades de la industria 5.0<br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <button class="slider-arrow arrow-right" id="nextBtn_t1">&#10095;</button>
-                </div>
-                <div class="slider-bullets"></div>
-            </div>
-        </div>
-    </section>
-    <!--Género____________________________________________________________________________________________-->
-    <section class="container" style="margin-top: 60px;">
-        <div class="pod_bubble" style="background-color:#cfa5d6;">Género</div>
-        <div class="slider-section">
-            <div class="slider-wrapper">
-                <button class="slider-arrow arrow-left" id="prevBtn_t1">&#10094;</button>
-                <div class="slider-container" id="slider_t1">
-                    <div class="movie-card" data-video="UBTzWBhJgro">
-                        <img src="https://img.youtube.com/vi/UBTzWBhJgro/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">
-                            Conferencia. Diversidades sexuales: ¿de identidades optadas a identidades emergentes?<br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="tygMai63x3k">
-                        <img src="https://img.youtube.com/vi/tygMai63x3k/maxresdefault.jpg" alt="T1 Ep 2">
-                        <p class="card-title">Mesa redonda. Juventud y maternidad: educación para la prevención<br>
-                            <!-- <span class="subtitle">Anabel de la Rosa Gómez</span>-->
-                        </p>
-                    </div>
-                </div>
-                <button class="slider-arrow arrow-right" id="nextBtn_t1">&#10095;</button>
-            </div>
-            <div class="slider-bullets"></div>
-        </div>
-        </div>
-    </section>
-    <!--Medio Ambiente____________________________________________________________________________________________-->
-    <section class="container" style="margin-top: 60px;">
-        <div class="pod_bubble" style="background-color:#a5ae37;">Medio Ambiente</div>
-        <div class="slider-section">
-            <div class="slider-wrapper">
-                <button class="slider-arrow arrow-left" id="prevBtn_t1">&#10094;</button>
-                <div class="slider-container" id="slider_t1">
-                    <div class="movie-card" data-video="Dfort68bdB4">
-                        <img src="https://img.youtube.com/vi/Dfort68bdB4/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Foro. Los árboles en el geosistema<br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                </div>
-                <button class="slider-arrow arrow-right" id="nextBtn_t1">&#10095;</button>
-            </div>
-            <div class="slider-bullets"></div>
-        </div>
-        </div>
-    </section>
-    <!--Interculturalidad____________________________________________________________________________________________-->
-    <section class="container" style="margin-top: 60px;">
-        <div class="pod_bubble" style="background-color:#ed9f9a;">Interculturalidad</div>
-        <div class="slider-section">
-            <div class="slider-wrapper">
-                <button class="slider-arrow arrow-left" id="prevBtn_t1">&#10094;</button>
-                <div class="slider-container" id="slider_t1">
-                    <div class="movie-card" data-video="L7FeT-WA62s">
-                        <img src="https://img.youtube.com/vi/L7FeT-WA62s/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Conferencia. De la diversidad cultural al pluralismo cultural<br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
+    <style type="text/css">
+    .cards-list {
+        z-index: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
 
-                      <div class="movie-card" data-video="1vothrPEKSM">
-                        <img src="https://img.youtube.com/vi/1vothrPEKSM/sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Comunicación intercultural en el siglo XVI de México <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="fJWLahgptww">
-                        <img src="https://img.youtube.com/vi/fJWLahgptww/sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Conferencia. La importancia social de la Lengua de Señas Mexican <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="LzyDHQCYl3k">
-                        <img src="https://img.youtube.com/vi/LzyDHQCYl3ksddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Derechos lingüísticos en la Educación Superior <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="">
-                        <img src="https://img.youtube.com/vi//sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title"> <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="">
-                        <img src="https://img.youtube.com/vi//sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title"> <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="">
-                        <img src="https://img.youtube.com/vi//sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title"> <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="">
-                        <img src="https://img.youtube.com/vi//sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title"> <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="">
-                        <img src="https://img.youtube.com/vi//sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title"> <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="">
-                        <img src="https://img.youtube.com/vi//sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title"> <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
+    .cajita {
+        margin: 30px auto;
+        width: 300px;
+        /*height: 300px;*/
+        border-radius: 40px;
+        /*box-shadow: 5px 5px 30px 7px rgb(0 0 0 / 0%), -5px -5px 30px 7px rgb(0 0 0 / 11%);*/
+        cursor: pointer;
+        transition: 0.4s;
+        color: #333333;
+        text-decoration: none !important;
+    }
 
-                </div>
-                <button class="slider-arrow arrow-right" id="nextBtn_t1">&#10095;</button>
-            </div>
-            <div class="slider-bullets"></div>
-        </div>
-        </div>
-    </section>
-    <!--Educación____________________________________________________________________________________________completo-->
-    <section class="container" style="margin-top: 60px;">
-        <div class="pod_bubble" style="background-color:#FCA33C;">Educación</div>
-        <div class="slider-section">
-            <div class="slider-wrapper">
-                <button class="slider-arrow arrow-left" id="prevBtn_t1">&#10094;</button>
-                <div class="slider-container" id="slider_t1">
-                    <div class="movie-card" data-video="StijYm25ch4">
-                        <img src="https://img.youtube.com/vi/StijYm25ch4/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Factores asociados al rendimiento académico en los estudiantes de licenciatura <br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="Z6mZH2-9aWM">
-                        <img src="https://img.youtube.com/vi/Z6mZH2-9aWM/sddefault.jpg" alt="T1 Ep 2">
-                        <p class="card-title">Diseña tu futuro. Guía para crear un Plan de Carrera Sólido <br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="jVxydPw7Xe0">
-                        <img src="https://img.youtube.com/vi/jVxydPw7Xe0/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">El sentido de los proyectos culturales universitarios <br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="1LXykIDfPWA">
-                        <img src="https://img.youtube.com/vi/1LXykIDfPWA/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Habilidades que abren puertas. Desarrolla tu potencial al máximo <br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="yCuejqD4C0Y">
-                        <img src="https://img.youtube.com/vi/yCuejqD4C0Y/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Habla y lidera: domina el arte de hablar en público<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="NcnyO6o9EKY">
-                        <img src="https://img.youtube.com/vi/NcnyO6o9EKY/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Conferencia. Ética académica y educación a distancia<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="T_S_qU70RNg">
-                        <img src="https://img.youtube.com/vi/T_S_qU70RNg/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Transformando la enseñanza de las matemáticas <br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="ITIn7kgLAmU">
-                        <img src="https://img.youtube.com/vi/ITIn7kgLAmU/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Conferencia: Enseñanza de las matemáticas en el siglo XXI.<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="K_U1mm9OlSQ">
-                        <img src="https://img.youtube.com/vi/K_U1mm9OlSQ/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Conversatorio. Miradas a la Independencia de México <br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="9sjdJOKP7kI">
-                        <img src="https://img.youtube.com/vi/9sjdJOKP7kI/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Mesa redonda. La comunicación y el transporte: su papel en desarrollo socioeconómico de México<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="wQQG-N94n3I">
-                        <img src="https://img.youtube.com/vi/wQQG-N94n3I/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">La diversidad lingüística en México<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="gTuK8DBodLI">
-                        <img src="https://img.youtube.com/vi/gTuK8DBodLI/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">100 Técnicas Didácticas de Enseñanza y Aprendizaje<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="1ukRgDVKvN4">
-                        <img src="https://img.youtube.com/vi/1ukRgDVKvN4/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Comunicar, enseñar y aprender en ambientes virtuales de aprendizaje<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="SXLWYDPAopk">
-                        <img src="https://img.youtube.com/vi/SXLWYDPAopk/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Publicaciones científicas y recursos educativos abiertos <br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="v8EvcKgbQuA">
-                        <img src="https://img.youtube.com/vi/v8EvcKgbQuA/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Conferencia: “La integración educativa en Latinoamérica: Hacia una agenda intercultural”<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="rPZRDsz10aI">
-                        <img src="https://img.youtube.com/vi/rPZRDsz10aI/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">¿Qué nos dicen los documentos sobre el pasado? ¿Cómo acercarse a las fuentes documentales? <br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="DytEiEavGnQ">
-                        <img src="https://img.youtube.com/vi/DytEiEavGnQ/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">¿Cómo se escribe la historia de nuestra patria? Experiencias de la escritora Martha Zamora<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="j294qgOczBQ">
-                        <img src="https://img.youtube.com/vi/j294qgOczBQ/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Matemáticas para un mundo mejor<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="tNDjrd8HUcM">
-                        <img src="https://img.youtube.com/vi/tNDjrd8HUcM/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Webinario: Herramientas y estrategias para búsquedas académicas en línea<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="GSIQKMfknGY">
-                        <img src="https://img.youtube.com/vi/GSIQKMfknGY/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Biblioteca Virtual en los procesos de enseñanza aprendizaje en la educación superior<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="SHBudVKfoFA">
-                        <img src="https://img.youtube.com/vi/SHBudVKfoFA/sddefault.jpg" alt="T1 Ep 3">
-                        <p class="card-title">Webinario Rechazo cero<br>
-                            <!--<span class="subtitle"</span>-->
-                        </p>
-                    </div>
-                </div>
-                <button class="slider-arrow arrow-right" id="nextBtn_t1">&#10095;</button>
-            </div>
-            <div class="slider-bullets"></div>
-        </div>
-        </div>
-    </section>
-    <!--Salud____________________________________________________________________________________________-->
-    <section class="container" style="margin-top: 60px;">
-        <div class="pod_bubble" style="background-color:#32c6ae;">Salud</div>
-        <div class="slider-section">
-            <div class="slider-wrapper">
-                <button class="slider-arrow arrow-left" id="hDqMs4_DWv0">&#10094;</button>
-                <div class="slider-container" id="slider_t1">
-                    <div class="movie-card" data-video="VIDEO_ID_T1_E1">
-                        <img src="https://img.youtube.com/vi/hDqMs4_DWv0/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Prevención <br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="ixFVJ6DjGv8">
-                        <img src="https://img.youtube.com/vi/ixFVJ6DjGv8/sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Salir de la zona de confort para fortalecer mi bienestar emocional <br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="wrQ_fKSFpc4">
-                        <img src="https://img.youtube.com/vi/wrQ_fKSFpc4/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Estableciendo límites saludables para un bienestar duradero<br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="omKIxY2G8SE">
-                        <img src="https://img.youtube.com/vi/omKIxY2G8SE/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Conferencia. El bienestar colectivo. Estrategias para una comunidad saludable y conectada <br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="a_ZslobEjPs">
-                        <img src="https://img.youtube.com/vi/a_ZslobEjPs/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Conferencia. Los propósitos para una vida saludable <br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="D9y6bUYor9w">
-                        <img src="https://img.youtube.com/vi/D9y6bUYor9w/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Conferencia La reflexión sobre nuestros hábitos alimenticios<br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="ChVpFKFcHk0">
-                        <img src="https://img.youtube.com/vi/ChVpFKFcHk0/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Conferencia. Seguir aprendiendo: La consolidación de los aprendizajes según la neurociencia <br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="v3wnrfdjqEo">
-                        <img src="https://img.youtube.com/vi/v3wnrfdjqEo/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Conferencia. Hacer actividad física: Los dispositivos inteligentes o wearables <br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="BNoiLLpbkdg">
-                        <img src="https://img.youtube.com/vi/BNoiLLpbkdg/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Comer saludable: Lectura de etiquetas<br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="0TPEC82Uz20">
-                        <img src="https://img.youtube.com/vi/0TPEC82Uz20/sddefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Conferencia: Dormir y aprender. Neurobiología del sueño<br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="1kp3TypruY8">
-                        <img src="https://img.youtube.com/vi/1kp3TypruY8/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Presentación del libro: Construir la salud a lo largo del curso de la vida<br>
-                            <!--<span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                </div>
-                <button class="slider-arrow arrow-right" id="nextBtn_t1">&#10095;</button>
-            </div>
-            <div class="slider-bullets"></div>
-        </div>
-        </div>
-    </section>
-    <!--Cultura de Paz____________________________________________________________________________________________-->
-    <section class="container" style="margin-top: 60px;">
-        <div class="pod_bubble" style="background-color:#ffffff;">Cultura de Paz</div>
-        <div class="slider-section">
-            <div class="slider-wrapper">
-                <button class="slider-arrow arrow-left" id="prevBtn_t1">&#10094;</button>
-                <div class="slider-container" id="slider_t1">
-                    <div class="movie-card" data-video="4jd7jTHO0Hw">
-                        <img src="https://img.youtube.com/vi/4jd7jTHO0Hw/maxresdefault.jpg" alt="T1 Ep 1">
-                        <p class="card-title">Conferencia. Protección de personas defensoras de DD. HH., y periodistas.
-                            <br>
-                            <!-- <span class="subtitle">Ricardo Villanueva Lomelí</span>-->
-                        </p>
-                    </div>
-                    <div class="movie-card" data-video="HiJA4M5n8Vo">
-                        <img src="https://img.youtube.com/vi/HiJA4M5n8Vo/maxresdefault.jpg" alt="T1 Ep 2">
-                        <p class="card-title">Videoconferencia: Educación para la paz
-                            <br>
-                            <!-- <span class="subtitle">Anabel de la Rosa Gómez</span>-->
-                        </p>
-                    </div>
-                </div>
-                <button class="slider-arrow arrow-right" id="nextBtn_t1">&#10095;</button>
-            </div>
-            <div class="slider-bullets"></div>
-        </div>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="twelve columns">
-                    <p>© 2026, Universidad Abierta y a Distancia de México</p>
-                    <a href="https://www.unadmexico.mx/images/descargables/datosAbiertos/AP_Videopodcast_VAyA_UnADM_05-02-2026.pdf" target="_blank">Aviso de Privacidad</a>
-                </div>
-            </div>
-        </div>
-        <div class="pod" id="modal">
-            <div class="pod-content">
-                <button class="close">&times;</button>
-                <iframe width="100%" height="600" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
-    </footer>
+    .cajita .card_image {
+        width: inherit;
+        height: inherit;
+        border-radius: 15px;
+    }
+
+    .cajita .card_image img {
+        width: inherit;
+        height: inherit;
+        border-radius: 15px;
+        object-fit: cover;
+    }
+
+    .card_info {
+        background-color: white;
+        border-radius: 0px 0px 15px 15px;
+        padding: 15px;
+        text-decoration: none;
+    }
+
+    .cajita .card_title {
+        text-align: center;
+        border-radius: 0px 0px 40px 40px;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 30px;
+        margin-top: -160px;
+        height: 40px;
+    }
+
+    .cajita:hover {
+        transform: scale(0.9, 0.9);
+        box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
+            -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+        color: #333333;
+    }
+
+    .title-white {
+        color: white;
+    }
+
+    .title-black {
+        color: black;
+    }
+
+    @media all and (max-width: 500px) {
+        .card-list {
+            /* On small screens, we are no longer using row direction but column */
+            flex-direction: column;
+        }
+    }
+
+    .card {
+        padding: 10px !important;
+        text-align: center;
+        border-radius: 10px;
+        background: #ffffff;
+        /*box-shadow: 20px 20px 60px #d9d9d9,
+         -20px -20px 60px #ffffff;*/
+        border: none;
+        cursor: pointer;
+        color: #995fb2;
+        background-color: #f2f4f8;
+    }
+
+    .card:hover {
+        border-radius: 10px;
+        background: #ffffff;
+        box-shadow: inset 20px 20px 60px #d9d9d9,
+            inset -20px -20px 60px #ffffff;
+    }
+
+    .card h3:hover {
+        z-index: 100;
+        -webkit-animation: scale 1s linear;
+        -moz-animation: scale 1s linear;
+        animation: scale 1s linear;
+        transform-origin: 50% 50%;
+        animation-fill-mode: forwards;
+    }
+
+    .card h3:visited {
+        color: #a5a5a5;
+    }
+
+    @keyframes scale {
+        0% {
+            transform: scale(1.0);
+        }
+
+        100% {
+            transform: scale(1.1);
+        }
+    }
+
+    @keyframes scaledown {
+        0% {
+            transform: scale(1.1);
+        }
+
+        100% {
+            transform: scale(1.0);
+        }
+    }
+    </style>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-
-        /* --- 1. TAB LOGIC --- */
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-
-                document.querySelectorAll('.temporada').forEach(section => {
-                    section.classList.remove('active');
-                });
-                document.querySelector('.' + tab.dataset.target).classList.add('active');
-            });
-        });
-
-        /* --- 2. MODAL LOGIC --- */
-        const modal = document.getElementById('modal');
-        const modalIframe = modal.querySelector('iframe');
-        const openHero = document.getElementById('openModalHero');
-        const closeBtn = modal.querySelector('.close');
-
-        // Function to open the modal with a specific video ID
-        function openModal(videoId) {
-            if (videoId) {
-                modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                modal.classList.add('active');
-            }
-        }
-
-        // Function to close the modal and stop the video
-        function closeModal() {
-            modal.classList.remove('active');
-            modalIframe.src = "";
-        }
-
-        // Bind the Hero "Reproducir" button to a default video (using the first episode)
-        if (openHero) {
-            openHero.addEventListener('click', () => openModal('Aot-V7c0RyQ'));
-        }
-
-        // Close modal events
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            // Close if clicking outside the video container
-            if (e.target === modal) closeModal();
-        });
-
-        /* --- 3. GENERALIZED SLIDER LOGIC --- */
-        const sliders = document.querySelectorAll('.slider-section');
-
-        sliders.forEach(section => {
-            const container = section.querySelector('.slider-container');
-            const leftBtn = section.querySelector('.arrow-left');
-            const rightBtn = section.querySelector('.arrow-right');
-            const bulletsContainer = section.querySelector('.slider-bullets');
-            const cards = section.querySelectorAll('.movie-card');
-
-            if (!container) return; // Skip if no container found
-
-            const scrollAmount = 300; // Adjust this to scroll more/less per click
-
-            // Arrow click events
-            if (leftBtn) {
-                leftBtn.addEventListener('click', () => {
-                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                });
-            }
-
-            if (rightBtn) {
-                rightBtn.addEventListener('click', () => {
-                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                });
-            }
-
-            // Bind movie cards to open the modal
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const videoId = card.getAttribute('data-video');
-                    openModal(videoId);
-                });
-            });
-
-            // Generate dynamic bullets based on card count
-            if (bulletsContainer && cards.length > 0) {
-                // Estimate the number of "pages" by dividing total cards by 3
-                const numBullets = Math.ceil(cards.length / 3);
-
-                for (let i = 0; i < numBullets; i++) {
-                    const bullet = document.createElement('div');
-                    bullet.classList.add('bullet');
-                    if (i === 0) bullet.classList.add('active');
-
-                    // Clicking a bullet jumps to that section
-                    bullet.addEventListener('click', () => {
-                        const scrollPos = (container.scrollWidth / numBullets) * i;
-                        container.scrollTo({ left: scrollPos, behavior: 'smooth' });
-                    });
-                    bulletsContainer.appendChild(bullet);
-                }
-
-                // Update active bullet based on scroll position
-                container.addEventListener('scroll', () => {
-                    const scrollPos = container.scrollLeft;
-                    const maxScroll = container.scrollWidth - container.clientWidth;
-
-                    let activeIndex = 0;
-                    if (maxScroll > 0) {
-                        activeIndex = Math.round((scrollPos / maxScroll) * (numBullets - 1));
-                    }
-
-                    const bullets = bulletsContainer.querySelectorAll('.bullet');
-                    bullets.forEach((b, idx) => {
-                        if (idx === activeIndex) {
-                            b.classList.add('active');
-                        } else {
-                            b.classList.remove('active');
-                        }
-                    });
-                });
-            }
-        });
-
-    });
+    function mostrar() {
+        document.getElementById("menu").classList.toggle('show');
+    }
     </script>
     <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+    <script type='text/javascript'>
+    document.oncontextmenu = function() { return false }
+    </script>
+    <script type="text/javascript">
+    document.getElementById("pod_menuToggle").addEventListener("click", function() {
+        document.getElementById("pod_menu").classList.toggle("pod_show");
+    });
+    </script>
 </body>
 
 </html>
